@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "jsx-a11y"],
+  "rules": {
+    // TypeScript strictness
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/consistent-type-imports": ["warn", { "prefer": "type-imports" }],
+
+    // Accessibility
+    "jsx-a11y/anchor-is-valid": "warn",
+    "jsx-a11y/interactive-supports-focus": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn",
+
+    // React best practices
+    "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "warn",
+
+    // Prevent console in production-intended code (use logger utility)
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+
+    // Enforce no inline styles (use Tailwind only)
+    "react/forbid-component-props": ["warn", { "forbid": ["style"] }]
+  },
+  "overrides": [
+    {
+      "files": ["lib/mock-api/**/*", "**/*.stories.tsx"],
+      "rules": {
+        "no-console": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}
