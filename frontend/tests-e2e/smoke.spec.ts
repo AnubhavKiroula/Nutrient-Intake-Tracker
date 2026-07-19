@@ -23,7 +23,7 @@ test.describe('NutriTrack AI Smoke Tests', () => {
 
   test('should load dashboard and render widgets', async ({ page }) => {
     await page.goto('/dashboard')
-    await expect(page.locator('text=Alex')).toBeVisible()
+    await expect(page.locator('text=Alex').first()).toBeVisible()
     await expect(page.locator('text=Daily Calories')).toBeVisible()
     await expect(page.locator('text=Water Intake')).toBeVisible()
     await expect(page.locator('text=Macronutrients')).toBeVisible()
