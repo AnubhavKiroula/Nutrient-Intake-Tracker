@@ -104,10 +104,10 @@ const config: Config = {
 
         // Macro nutrient colors (consistent, not dependent on theme)
         macro: {
-          protein: '#2563EB',   // blue — accent
-          carbs: '#22C55E',     // green — success
-          fat: '#F59E0B',       // amber — warning
-          fiber: '#64748B',     // slate — muted
+          protein: '#2563EB', // blue — accent
+          carbs: '#22C55E', // green — success
+          fat: '#F59E0B', // amber — warning
+          fiber: '#64748B', // slate — muted
         },
       },
 
@@ -118,15 +118,15 @@ const config: Config = {
       },
       fontSize: {
         // 8px grid-aligned type scale
-        xs: ['0.75rem', { lineHeight: '1rem' }],       // 12px
-        sm: ['0.875rem', { lineHeight: '1.25rem' }],   // 14px
-        base: ['1rem', { lineHeight: '1.5rem' }],      // 16px ← design base
-        lg: ['1.125rem', { lineHeight: '1.75rem' }],   // 18px
-        xl: ['1.25rem', { lineHeight: '1.75rem' }],    // 20px
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],     // 24px
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],// 30px
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],  // 36px
-        '5xl': ['3rem', { lineHeight: '1' }],          // 48px
+        xs: ['0.75rem', { lineHeight: '1rem' }], // 12px
+        sm: ['0.875rem', { lineHeight: '1.25rem' }], // 14px
+        base: ['1rem', { lineHeight: '1.5rem' }], // 16px ← design base
+        lg: ['1.125rem', { lineHeight: '1.75rem' }], // 18px
+        xl: ['1.25rem', { lineHeight: '1.75rem' }], // 20px
+        '2xl': ['1.5rem', { lineHeight: '2rem' }], // 24px
+        '3xl': ['1.875rem', { lineHeight: '2.25rem' }], // 30px
+        '4xl': ['2.25rem', { lineHeight: '2.5rem' }], // 36px
+        '5xl': ['3rem', { lineHeight: '1' }], // 48px
       },
       fontWeight: {
         normal: '400',
@@ -142,21 +142,21 @@ const config: Config = {
         '0.5': '2px',
         '1': '4px',
         '1.5': '6px',
-        '2': '8px',    // 1 grid unit
+        '2': '8px', // 1 grid unit
         '2.5': '10px',
         '3': '12px',
         '3.5': '14px',
-        '4': '16px',   // 2 grid units
+        '4': '16px', // 2 grid units
         '5': '20px',
-        '6': '24px',   // 3 grid units
+        '6': '24px', // 3 grid units
         '7': '28px',
-        '8': '32px',   // 4 grid units
+        '8': '32px', // 4 grid units
         '9': '36px',
-        '10': '40px',  // 5 grid units
+        '10': '40px', // 5 grid units
         '11': '44px',
-        '12': '48px',  // 6 grid units
+        '12': '48px', // 6 grid units
         '14': '56px',
-        '16': '64px',  // 8 grid units
+        '16': '64px', // 8 grid units
         '20': '80px',
         '24': '96px',
         '28': '112px',
@@ -177,11 +177,11 @@ const config: Config = {
       // ─── Border Radius ──────────────────────────────────────────────────────
       borderRadius: {
         none: '0px',
-        sm: 'calc(var(--radius) - 4px)',      // 4px
-        DEFAULT: 'var(--radius)',              // 8px
-        md: 'calc(var(--radius) + 0px)',      // 8px
-        lg: 'calc(var(--radius) + 4px)',      // 12px
-        xl: 'calc(var(--radius) + 8px)',      // 16px
+        sm: 'calc(var(--radius) - 4px)', // 4px
+        DEFAULT: 'var(--radius)', // 8px
+        md: 'calc(var(--radius) + 0px)', // 8px
+        lg: 'calc(var(--radius) + 4px)', // 12px
+        xl: 'calc(var(--radius) + 8px)', // 16px
         '2xl': 'calc(var(--radius) + 16px)', // 24px
         full: '9999px',
       },

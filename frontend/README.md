@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NutriTrack AI — Frontend
 
-## Getting Started
+> Premium Next.js 14 SaaS nutrition-tracking dashboard built with TypeScript, Tailwind CSS, shadcn/ui and Recharts.
 
-First, run the development server:
+---
+
+## 🚀 Quick Start
+
+### 1. Install Dependencies
+
+Ensure you have [pnpm](https://pnpm.io) installed globally, then run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run the Development Server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Folder Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+frontend/
+├── .storybook/          # Storybook configurations and theme decorators
+├── app/                 # Next.js App Router routes and page entrypoints
+│   ├── (auth)/          # Authentication flow screens (login, register, forgot-password...)
+│   ├── (onboarding)/    # Profile setup multi-step wizard (setup)
+│   └── (dashboard)/     # Main dashboard workspace (dashboard, search, meals, analytics...)
+├── components/          # Reusable shared components
+│   ├── layout/          # Global layout structure (Sidebar, Topbar, ErrorBoundary...)
+│   └── ui/              # shadcn base primitives and stories (.stories.tsx)
+├── features/            # Isolated business-domain component layers
+│   ├── auth/            # Auth status context (MockAuthProvider)
+│   ├── profile/         # Onboarding multi-step form steps
+│   ├── dashboard/       # Dashboard calorie and macro card widgets
+│   ├── food-search/     # Search input, category chips, details modal
+│   ├── meal-logger/     # breakfast/lunch tabs and meal entry cards
+│   ├── analytics/       # Recharts weekly, monthly, and macro donut charts
+│   └── settings/        # settings tabs and profile toggles
+├── hooks/               # Custom hooks (useDebounce, useMediaQuery, useToast)
+├── lib/                 # Core utilities and data schemas
+│   ├── mock-api/        # In-memory mock API layer + JSON fixtures
+│   └── utils.ts         # Numeric multipliers and class-name mergers
+├── styles/              # Design Token specifications (tokens.json, globals.css)
+└── types/               # TypeScript interfaces mirroring FastAPI contracts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🌿 Verification Commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Execute the following commands locally to verify code quality:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# 1. Run ESLint static check
+pnpm lint
+
+# 2. Run TypeScript compiler check
+pnpm type-check
+
+# 3. Check code formatting
+pnpm format:check
+
+# 4. Run Playwright End-to-End smoke tests
+pnpm test:e2e
+```
+
+---
+
+## 🧪 Mock API & Handoff (Phase 5)
+
+All components request data through TanStack Query hooks, which fetch from the typed mock functions in `lib/mock-api/`.
+These mock functions return response envelopes that mirror the future FastAPI contracts:
+
+```typescript
+// Example from lib/mock-api/meals.ts
+export async function mockGetMeals(date: string): Promise<ApiResponse<MealEntry[]>> {
+  await simulateDelay()
+  const filtered = localMeals.filter((meal) => meal.date === date)
+  return { success: true, data: filtered, error: null }
+}
+```
+
+### Swapping to Live Backend (Phase 5 Integration)
+
+To connect the real database and FastAPI backend:
+
+1. Create a `lib/api/` folder.
+2. Re-implement the mock-api functions (e.g. `getMeals()`, `login()`, `searchFoods()`) with actual Axios calls pointing to the FastAPI baseURL.
+3. Update import paths in page components from `@/lib/mock-api` to `@/lib/api`.
+4. No component code modifications or props re-wirings are required!
+
+---
+
+## ♿ Accessibility & Quality Assurance
+
+- **axe-core integration:** During local development, accessibility violations are automatically audited and logged directly in the browser developer console.
+- **Dark Mode:** Supports full, premium-feel dark theme matching custom color tokens.
+- **Keyboard navigation:** All inputs, dialogs, dropdowns, and form submits support focus outline indicators and Tab/Escape keyboard triggers.

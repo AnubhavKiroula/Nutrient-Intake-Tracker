@@ -41,9 +41,12 @@ function SkeletonText({ lines = 3, className }: { lines?: number; className?: st
 // ── Skeleton Card ────────────────────────────────────────────
 function SkeletonCard({ className }: { className?: string }) {
   return (
-    <div className={cn('rounded-xl border border-border bg-card p-6 shadow-card', className)} aria-hidden="true">
+    <div
+      className={cn('rounded-xl border border-border bg-card p-6 shadow-card', className)}
+      aria-hidden="true"
+    >
       <div className="flex items-start justify-between">
-        <div className="space-y-2 flex-1">
+        <div className="flex-1 space-y-2">
           <Skeleton className="h-4 w-24" />
           <Skeleton className="h-8 w-16" />
         </div>
@@ -76,14 +79,10 @@ function SkeletonRow({ columns = 4, className }: { columns?: number; className?:
 // ── Skeleton Chart ───────────────────────────────────────────
 function SkeletonChart({ className }: { className?: string }) {
   return (
-    <div className={cn('flex items-end gap-2 h-40', className)} aria-hidden="true">
+    <div className={cn('flex h-40 items-end gap-2', className)} aria-hidden="true">
       {[60, 85, 45, 70, 90, 55, 75].map((h, i) => (
-        <div key={i} className="flex-1 flex items-end">
-          <Skeleton
-            className="w-full"
-            style={{ height: `${h}%` }}
-            rounded="sm"
-          />
+        <div key={i} className="flex flex-1 items-end">
+          <Skeleton className="w-full" style={{ height: `${h}%` }} rounded="sm" />
         </div>
       ))}
     </div>

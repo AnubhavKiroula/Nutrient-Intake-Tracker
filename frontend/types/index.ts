@@ -4,7 +4,28 @@
 // so Phase 5 API wiring requires zero type changes.
 // ============================================================
 
-import type { ActivityLevel, Allergen, DietaryPreference, FoodCategory, HealthGoal, MealType, ReportPeriod, ServingUnit, UnitSystem } from '@/lib/constants'
+import type {
+  ActivityLevel,
+  Allergen,
+  DietaryPreference,
+  FoodCategory,
+  HealthGoal,
+  MealType,
+  ReportPeriod,
+  ServingUnit,
+  UnitSystem,
+} from '@/lib/constants'
+export type {
+  ActivityLevel,
+  Allergen,
+  DietaryPreference,
+  FoodCategory,
+  HealthGoal,
+  MealType,
+  ReportPeriod,
+  ServingUnit,
+  UnitSystem,
+}
 
 // ── API Response Envelope ────────────────────────────────────
 // All API responses (real and mock) use this shape
@@ -106,11 +127,11 @@ export interface MealEntry {
   food_id: string
   food: Food
   meal_type: MealType
-  date: string                // ISO date string YYYY-MM-DD
+  date: string // ISO date string YYYY-MM-DD
   quantity: number
   serving_unit: ServingUnit
   notes?: string
-  nutrition: NutritionInfo   // pre-calculated for this quantity
+  nutrition: NutritionInfo // pre-calculated for this quantity
   created_at: string
   updated_at: string
 }
@@ -164,7 +185,7 @@ export interface DailyCalorieData {
 
 export interface MacroData {
   name: string
-  value: number    // grams
+  value: number // grams
   percentage: number
   color: string
 }
@@ -183,7 +204,7 @@ export interface WeeklyAnalytics {
 }
 
 export interface MonthlyAnalytics {
-  month: string   // YYYY-MM
+  month: string // YYYY-MM
   daily_calories: DailyCalorieData[]
   weekly_averages: { week: string; calories: number }[]
   average_calories: number

@@ -17,9 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0',
           'disabled:cursor-not-allowed disabled:opacity-50',
           'file:border-0 file:bg-transparent file:text-sm file:font-medium',
-          error
-            ? 'border-danger focus-visible:ring-danger'
-            : 'border-input hover:border-accent/40',
+          error ? 'border-danger focus-visible:ring-danger' : 'border-input hover:border-accent/40',
           className
         )}
         ref={ref}
