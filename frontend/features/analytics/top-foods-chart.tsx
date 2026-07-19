@@ -55,8 +55,8 @@ export function TopFoodsChart({ topFoods }: TopFoodsChartProps) {
                   borderRadius: '8px',
                   fontSize: '11px',
                 }}
-                formatter={(value: number, name: string) => [
-                  name === 'count' ? `${value} times` : `${formatCalories(value)}`,
+                formatter={(value: any, name: any) => [
+                  name === 'count' ? `${value} times` : `${formatCalories(Number(value))}`,
                   name === 'count' ? 'Times Logged' : 'Total Calories',
                 ]}
               />
