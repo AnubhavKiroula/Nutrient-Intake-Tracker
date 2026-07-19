@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/layout/theme-provider'
 import { QueryProvider } from '@/components/layout/query-provider'
 import { MockAuthProvider } from '@/features/auth/context/MockAuthProvider'
+import { AxeA11yProvider } from '@/components/layout/AxeA11yProvider'
 import { Toaster } from '@/components/ui/toaster'
 import { APP_DESCRIPTION, APP_NAME } from '@/lib/constants'
 
@@ -49,8 +50,10 @@ export default function RootLayout({
         >
           <QueryProvider>
             <MockAuthProvider>
-              {children}
-              <Toaster />
+              <AxeA11yProvider>
+                {children}
+                <Toaster />
+              </AxeA11yProvider>
             </MockAuthProvider>
           </QueryProvider>
         </ThemeProvider>
