@@ -65,7 +65,7 @@ export function CalorieTrendChart({ data, title, description }: CalorieTrendChar
                   borderRadius: '8px',
                   fontSize: '11px',
                 }}
-                formatter={(value: number) => [`${formatNumber(value)} kcal`, 'Intake']}
+                formatter={(value: any) => [`${formatNumber(Number(value))} kcal`, 'Intake']}
               />
               <ReferenceLine
                 y={goal}
