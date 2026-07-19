@@ -1,0 +1,298 @@
+/* ============================================================
+   NutriTrack AI — Global Styles
+   Design System: CSS Custom Properties (Light + Dark themes)
+   60% neutral background | 30% surface/cards | 10% blue accent
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* ── CSS Variables — Light Theme (default) ───────────────────── */
+@layer base {
+  :root {
+    /* Typography */
+    --font-inter: 'Inter', system-ui, sans-serif;
+
+    /* Radius base (8px → all others derived in tailwind.config.ts) */
+    --radius: 0.5rem;
+
+    /* ── 60% — Neutral Background */
+    --background: 210 40% 98%; /* #F8FAFC */
+    --foreground: 222 84% 5%; /* #0F172A */
+
+    /* ── 30% — Surfaces / Cards / Panels */
+    --surface: 0 0% 100%; /* #FFFFFF */
+    --surface-raised: 210 40% 96%; /* #F1F5F9 */
+    --surface-overlay: 0 0% 100%; /* #FFFFFF */
+
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 222 84% 5%; /* #0F172A */
+
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 222 84% 5%;
+
+    --muted: 210 40% 96%; /* #F1F5F9 */
+    --muted-foreground: 215 16% 47%; /* #64748B */
+
+    --secondary: 210 40% 96%; /* #F1F5F9 */
+    --secondary-foreground: 222 47% 11%;
+
+    /* ── 10% — Accent (Blue Only) */
+    --accent: 217 91% 60%; /* #2563EB */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+    --accent-subtle: 214 100% 97%; /* #EFF6FF */
+
+    --primary: 217 91% 60%; /* #2563EB */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+
+    /* ── Borders & Inputs */
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --input: 214 32% 91%; /* #E2E8F0 */
+    --ring: 217 91% 60%; /* #2563EB — focus ring */
+
+    /* ── Status Colors */
+    --success: 142 71% 45%; /* #22C55E */
+    --success-foreground: 0 0% 100%;
+    --success-subtle: 142 76% 96%; /* #F0FDF4 */
+
+    --warning: 38 92% 50%; /* #F59E0B */
+    --warning-foreground: 0 0% 100%;
+    --warning-subtle: 48 100% 96%; /* #FFFBEB */
+
+    --danger: 0 84% 60%; /* #EF4444 */
+    --danger-foreground: 0 0% 100%;
+    --danger-subtle: 0 86% 97%; /* #FEF2F2 */
+
+    /* ── Sidebar */
+    --sidebar-background: 0 0% 100%; /* #FFFFFF */
+    --sidebar-foreground: 222 84% 5%; /* #0F172A */
+    --sidebar-border: 214 32% 91%; /* #E2E8F0 */
+    --sidebar-accent: 210 40% 96%; /* #F1F5F9 — hover state */
+    --sidebar-accent-foreground: 222 47% 11%;
+
+    /* ── Chart Colors (fixed regardless of theme) */
+    --chart-1: 217 91% 60%; /* blue — calories/primary */
+    --chart-2: 142 71% 45%; /* green — protein */
+    --chart-3: 38 92% 50%; /* amber — carbs */
+    --chart-4: 0 84% 60%; /* red — fat */
+    --chart-5: 215 16% 47%; /* slate — fiber/other */
+  }
+
+  /* ── CSS Variables — Dark Theme ───────────────────────────────── */
+  .dark {
+    /* ── 60% — Neutral Background */
+    --background: 222 47% 8%; /* #0D1221 — deep dark slate */
+    --foreground: 210 40% 98%; /* #F8FAFC */
+
+    /* ── 30% — Surfaces / Cards */
+    --surface: 222 47% 11%; /* #111827 */
+    --surface-raised: 222 47% 14%; /* #1E2A3D */
+    --surface-overlay: 222 47% 16%; /* #1F2E45 */
+
+    --card: 222 47% 11%; /* #111827 */
+    --card-foreground: 210 40% 98%; /* #F8FAFC */
+
+    --popover: 222 47% 13%;
+    --popover-foreground: 210 40% 98%;
+
+    --muted: 222 47% 16%; /* #1E2A3D */
+    --muted-foreground: 215 20% 55%; /* #7A8FA6 */
+
+    --secondary: 222 47% 16%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* ── 10% — Accent (same blue, slightly brighter for dark) */
+    --accent: 217 91% 65%; /* #3B82F6 — slightly lighter blue for dark */
+    --accent-foreground: 0 0% 100%;
+    --accent-subtle: 217 91% 12%; /* Dark blue tint background */
+
+    --primary: 217 91% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    /* ── Borders & Inputs */
+    --border: 222 47% 20%; /* subtle dark border */
+    --input: 222 47% 18%;
+    --ring: 217 91% 65%;
+
+    /* ── Status Colors (slightly adjusted for dark) */
+    --success: 142 69% 50%;
+    --success-foreground: 0 0% 100%;
+    --success-subtle: 142 76% 8%;
+
+    --warning: 38 90% 55%;
+    --warning-foreground: 222 84% 5%;
+    --warning-subtle: 38 100% 8%;
+
+    --danger: 0 82% 65%;
+    --danger-foreground: 0 0% 100%;
+    --danger-subtle: 0 86% 8%;
+
+    /* ── Sidebar (slightly darker than main surface) */
+    --sidebar-background: 222 47% 9%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-border: 222 47% 16%;
+    --sidebar-accent: 222 47% 14%;
+    --sidebar-accent-foreground: 210 40% 98%;
+
+    /* ── Charts (slightly adjusted brightness for dark) */
+    --chart-1: 217 91% 65%;
+    --chart-2: 142 69% 50%;
+    --chart-3: 38 90% 55%;
+    --chart-4: 0 82% 65%;
+    --chart-5: 215 20% 55%;
+  }
+}
+
+/* ── Base Resets & Document Defaults ─────────────────────────── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Focus rings — visible but not ugly */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Remove focus ring when using mouse */
+  :focus:not(:focus-visible) {
+    @apply outline-none;
+  }
+
+  /* Headings */
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+  h2 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+  h4 {
+    @apply text-xl font-semibold;
+  }
+  h5 {
+    @apply text-lg font-medium;
+  }
+  h6 {
+    @apply text-base font-medium;
+  }
+
+  /* Links */
+  a {
+    @apply text-accent underline-offset-4 hover:underline;
+  }
+}
+
+/* ── Component Utilities ──────────────────────────────────────── */
+@layer components {
+  /* Skeleton shimmer animation */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-muted;
+  }
+
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--surface) / 0.6) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Card base — used everywhere */
+  .card-base {
+    @apply rounded-xl border border-border bg-card shadow-card;
+  }
+
+  /* Interactive card — hover lift effect */
+  .card-interactive {
+    @apply card-base cursor-pointer transition-shadow duration-slow hover:shadow-card-hover;
+  }
+
+  /* Page container */
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-4 py-6 md:px-6 lg:px-8;
+  }
+
+  /* Section header pattern */
+  .section-header {
+    @apply mb-6 flex items-center justify-between;
+  }
+
+  /* Metric number display */
+  .metric-value {
+    @apply text-4xl font-bold tracking-tight text-foreground;
+  }
+
+  .metric-label {
+    @apply text-sm font-medium text-muted-foreground;
+  }
+
+  /* Status badge base */
+  .status-dot {
+    @apply inline-block h-2 w-2 rounded-full;
+  }
+}
+
+/* ── Utility Extensions ───────────────────────────────────────── */
+@layer utilities {
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Ellipsis truncation */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Thin scrollbar for side panels */
+  .thin-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
