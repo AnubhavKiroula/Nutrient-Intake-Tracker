@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { PageContainer, PageHeader } from '@/components/layout/page-container'
 import { Input } from '@/components/ui/input'
-import { Search, SearchX, Loader2 } from 'lucide-react'
+import { Search, SearchX } from 'lucide-react'
 import { CategoryChips } from '@/features/food-search/category-chips'
 import { FilterPanel } from '@/features/food-search/filter-panel'
 import { FoodCard } from '@/features/food-search/food-card'
@@ -14,7 +14,7 @@ import { ErrorState } from '@/components/ui/error-state'
 import { SkeletonRow } from '@/components/ui/skeleton'
 import { mockSearchFoods } from '@/lib/mock-api'
 import { useDebounce } from '@/hooks/useDebounce'
-import type { Food, MealType, FoodCategory } from '@/types'
+import type { Food, MealType, FoodCategory, DietaryPreference, Allergen } from '@/types'
 
 export default function FoodSearchPage() {
   const [query, setQuery] = React.useState('')
@@ -37,8 +37,8 @@ export default function FoodSearchPage() {
     queryFn: () =>
       mockSearchFoods(debouncedQuery, {
         category,
-        dietary: dietary as any,
-        exclude_allergens: allergens as any,
+        dietary: dietary as DietaryPreference[],
+        exclude_allergens: allergens as Allergen[],
       }),
     enabled: debouncedQuery.trim().length > 0,
   })
@@ -53,10 +53,9 @@ export default function FoodSearchPage() {
   }
 
   // Mock log meal helper (for Phase 1 UI behavior only)
-  const handleLogMeal = async (food: Food, quantity: number, mealType: MealType, notes?: string) => {
+  const handleLogMeal = async (_food: Food, _quantity: number, _mealType: MealType, _notes?: string) => {
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 800))
-    console.log('Logged meal to mock db:', { food, quantity, mealType, notes })
   }
 
   const handleSelectFood = (food: Food) => {
@@ -131,7 +130,7 @@ export default function FoodSearchPage() {
               size="md"
             />
           ) : (
-            <ul className="space-y-2.5" role="list" aria-label="Search results">
+            <ul className="space-y-2.5" aria-label="Search results">
               {results.map((food) => (
                 <li key={food.id}>
                   <FoodCard food={food} onSelect={handleSelectFood} />
