@@ -52,17 +52,7 @@ export function OnboardingForm() {
   const totalSteps = 5
 
   const form = useForm<OnboardingFormValues>({
-    resolver: zodResolver(
-      step === 1
-        ? step1Schema
-        : step === 2
-        ? step2Schema
-        : step === 3
-        ? step3Schema
-        : step === 4
-        ? step4Schema
-        : step5Schema
-    ),
+    resolver: zodResolver(onboardingSchema),
     defaultValues: {
       name: '',
       age: 25,
@@ -120,7 +110,7 @@ export function OnboardingForm() {
 
   const onSubmit = async (data: OnboardingFormValues) => {
     try {
-      await completeOnboarding(data)
+      await completeOnboarding(data as any)
       toast.success('Setup completed!', 'Welcome to NutriTrack AI.')
       window.location.href = ROUTES.DASHBOARD
     } catch (err: any) {
