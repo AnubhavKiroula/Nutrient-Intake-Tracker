@@ -21,8 +21,8 @@ const progressVariants = cva('h-full w-full flex-1 transition-all duration-slow'
 })
 
 export interface ProgressProps
-  extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
-    VariantProps<typeof progressVariants> {
+  extends Omit<React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>, 'color'> {
+  color?: 'default' | 'success' | 'warning' | 'danger' | 'protein' | 'carbs' | 'fat' | null
   label?: string
   showValue?: boolean
 }

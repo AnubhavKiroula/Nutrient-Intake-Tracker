@@ -48,6 +48,8 @@
   "devDependencies": {
     "@axe-core/react": "^4.12.1",
     "@playwright/test": "^1.61.1",
+    "@storybook/nextjs": "^10.5.2",
+    "@storybook/react": "^10.5.2",
     "@tanstack/react-query-devtools": "^5.101.2",
     "@types/node": "^20",
     "@types/react": "^18",

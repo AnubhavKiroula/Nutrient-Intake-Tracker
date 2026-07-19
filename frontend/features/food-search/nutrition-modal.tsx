@@ -16,7 +16,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { MEAL_TYPES, MEAL_TYPE_LABELS, MEAL_TYPE_ICONS } from '@/lib/constants'
 import { Progress } from '@/components/ui/progress'
-import { calculatePercentage, formatNumber, formatGrams } from '@/lib/utils'
+import { calculatePercentage, formatNumber, formatGrams, cn } from '@/lib/utils'
 import { toast } from '@/hooks/useToast'
 import { CheckCircle2, Leaf } from 'lucide-react'
 
