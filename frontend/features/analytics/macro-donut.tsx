@@ -48,7 +48,7 @@ export function MacroDonut({ protein, carbs, fat }: MacroDonutProps) {
                       borderRadius: '8px',
                       fontSize: '11px',
                     }}
-                    formatter={(value: number) => [`${value}g`, 'Amount']}
+                    formatter={(value: any) => [`${value}g`, 'Amount']}
                   />
                   <Pie
                     data={data}
