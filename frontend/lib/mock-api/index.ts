@@ -15,6 +15,7 @@ export * from './auth'
 export * from './dashboard'
 export * from './food-search'
 export * from './analytics'
+export * from './meals'
 
 // Re-export fixtures for testing and Storybook
 export * from './fixtures/foods'
