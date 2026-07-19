@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/layout/theme-provider'
 import { QueryProvider } from '@/components/layout/query-provider'
+import { MockAuthProvider } from '@/features/auth/context/MockAuthProvider'
 import { Toaster } from '@/components/ui/toaster'
 import { APP_DESCRIPTION, APP_NAME } from '@/lib/constants'
 
@@ -47,8 +48,10 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           <QueryProvider>
-            {children}
-            <Toaster />
+            <MockAuthProvider>
+              {children}
+              <Toaster />
+            </MockAuthProvider>
           </QueryProvider>
         </ThemeProvider>
       </body>
