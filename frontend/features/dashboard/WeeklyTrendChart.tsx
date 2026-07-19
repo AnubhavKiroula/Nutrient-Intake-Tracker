@@ -43,7 +43,7 @@ export function WeeklyTrendChart() {
                   borderRadius: '8px',
                   fontSize: '12px',
                 }}
-                formatter={(v: number) => [formatNumber(v) + ' kcal', 'Calories']}
+                formatter={(v: any) => [formatNumber(Number(v)) + ' kcal', 'Calories']}
               />
               <ReferenceLine y={goal} stroke="hsl(var(--accent))" strokeDasharray="4 4" strokeWidth={1.5} label={{ value: 'Goal', fill: 'hsl(var(--accent))', fontSize: 10 }} />
               <Bar dataKey="calories" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} opacity={0.85} />
