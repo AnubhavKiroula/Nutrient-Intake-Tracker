@@ -53,7 +53,12 @@ export default function FoodSearchPage() {
   }
 
   // Mock log meal helper (for Phase 1 UI behavior only)
-  const handleLogMeal = async (_food: Food, _quantity: number, _mealType: MealType, _notes?: string) => {
+  const handleLogMeal = async (
+    _food: Food,
+    _quantity: number,
+    _mealType: MealType,
+    _notes?: string
+  ) => {
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 800))
   }
@@ -73,19 +78,25 @@ export default function FoodSearchPage() {
       <div className="space-y-4">
         {/* Search Input */}
         <div className="relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+          <Search
+            className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden="true"
+          />
           <Input
             id="food-search-input"
             type="search"
             placeholder="Search verified foods (e.g. Chicken, Brown Rice, Avocado...)"
-            className="pl-10 h-11"
+            className="h-11 pl-10"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
 
         {/* Category horizontal scrolling chips */}
-        <CategoryChips selectedCategory={category} onSelectCategory={(cat) => setCategory(cat as FoodCategory)} />
+        <CategoryChips
+          selectedCategory={category}
+          onSelectCategory={(cat) => setCategory(cat as FoodCategory)}
+        />
 
         {/* Filter Panel */}
         <FilterPanel

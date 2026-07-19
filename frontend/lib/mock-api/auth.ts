@@ -25,10 +25,18 @@ export async function mockLogin(
 
   // Simulate validation
   if (!email || !password) {
-    return { success: false, data: null, error: { code: 'VALIDATION_ERROR', message: 'Email and password are required' } }
+    return {
+      success: false,
+      data: null,
+      error: { code: 'VALIDATION_ERROR', message: 'Email and password are required' },
+    }
   }
   if (password.length < 8) {
-    return { success: false, data: null, error: { code: 'INVALID_CREDENTIALS', message: 'Invalid email or password' } }
+    return {
+      success: false,
+      data: null,
+      error: { code: 'INVALID_CREDENTIALS', message: 'Invalid email or password' },
+    }
   }
 
   return { success: true, data: MOCK_SESSION, error: null }
@@ -42,7 +50,11 @@ export async function mockRegister(
   await simulateDelay(MOCK_DELAY_MS.normal)
 
   if (!email.includes('@')) {
-    return { success: false, data: null, error: { code: 'VALIDATION_ERROR', message: 'Invalid email address' } }
+    return {
+      success: false,
+      data: null,
+      error: { code: 'VALIDATION_ERROR', message: 'Invalid email address' },
+    }
   }
 
   return { success: true, data: { ...MOCK_USER, name, email }, error: null }
@@ -51,12 +63,19 @@ export async function mockRegister(
 export async function mockForgotPassword(email: string): Promise<ApiResponse<{ sent: boolean }>> {
   await simulateDelay(MOCK_DELAY_MS.normal)
   if (!email.includes('@')) {
-    return { success: false, data: null, error: { code: 'VALIDATION_ERROR', message: 'Invalid email address' } }
+    return {
+      success: false,
+      data: null,
+      error: { code: 'VALIDATION_ERROR', message: 'Invalid email address' },
+    }
   }
   return { success: true, data: { sent: true }, error: null }
 }
 
-export async function mockResetPassword(_token: string, _password: string): Promise<ApiResponse<{ reset: boolean }>> {
+export async function mockResetPassword(
+  _token: string,
+  _password: string
+): Promise<ApiResponse<{ reset: boolean }>> {
   await simulateDelay(MOCK_DELAY_MS.normal)
   return { success: true, data: { reset: true }, error: null }
 }

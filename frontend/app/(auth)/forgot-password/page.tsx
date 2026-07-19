@@ -18,7 +18,12 @@ type FormData = z.infer<typeof schema>
 
 export default function ForgotPasswordPage() {
   const [sent, setSent] = useState(false)
-  const { register, handleSubmit, getValues, formState: { errors, isSubmitting } } = useForm<FormData>({ resolver: zodResolver(schema) })
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({ resolver: zodResolver(schema) })
 
   async function onSubmit(data: FormData) {
     await mockForgotPassword(data.email)
@@ -28,7 +33,7 @@ export default function ForgotPasswordPage() {
   if (sent) {
     return (
       <Card className="border-border shadow-card">
-        <CardContent className="pt-6 text-center space-y-4">
+        <CardContent className="space-y-4 pt-6 text-center">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-success-subtle">
             <CheckCircle2 className="h-7 w-7 text-success" />
           </div>
@@ -39,7 +44,10 @@ export default function ForgotPasswordPage() {
             </p>
           </div>
           <Link href={ROUTES.LOGIN}>
-            <Button variant="outline" className="w-full"><ArrowLeft className="h-4 w-4" />Back to sign in</Button>
+            <Button variant="outline" className="w-full">
+              <ArrowLeft className="h-4 w-4" />
+              Back to sign in
+            </Button>
           </Link>
         </CardContent>
       </Card>
@@ -59,12 +67,28 @@ export default function ForgotPasswordPage() {
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
           <div className="space-y-1.5">
             <Label htmlFor="reset-email">Email address</Label>
-            <Input id="reset-email" type="email" placeholder="you@example.com" autoComplete="email" error={!!errors.email} {...register('email')} />
-            {errors.email && <p className="text-xs text-danger" role="alert">{errors.email.message}</p>}
+            <Input
+              id="reset-email"
+              type="email"
+              placeholder="you@example.com"
+              autoComplete="email"
+              error={!!errors.email}
+              {...register('email')}
+            />
+            {errors.email && (
+              <p className="text-xs text-danger" role="alert">
+                {errors.email.message}
+              </p>
+            )}
           </div>
-          <Button type="submit" className="w-full" loading={isSubmitting}>Send reset link</Button>
+          <Button type="submit" className="w-full" loading={isSubmitting}>
+            Send reset link
+          </Button>
           <Link href={ROUTES.LOGIN}>
-            <Button variant="ghost" className="w-full"><ArrowLeft className="h-4 w-4" />Back to sign in</Button>
+            <Button variant="ghost" className="w-full">
+              <ArrowLeft className="h-4 w-4" />
+              Back to sign in
+            </Button>
           </Link>
         </form>
       </CardContent>

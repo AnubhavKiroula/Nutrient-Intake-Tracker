@@ -16,7 +16,9 @@ export async function mockGetMeals(date: string): Promise<ApiResponse<MealEntry[
   return { success: true, data: filtered, error: null }
 }
 
-export async function mockAddMeal(meal: Omit<MealEntry, 'id' | 'created_at' | 'updated_at'>): Promise<ApiResponse<MealEntry>> {
+export async function mockAddMeal(
+  meal: Omit<MealEntry, 'id' | 'created_at' | 'updated_at'>
+): Promise<ApiResponse<MealEntry>> {
   await simulateDelay(MOCK_DELAY_MS.normal)
   const newMeal: MealEntry = {
     ...meal,
@@ -28,11 +30,19 @@ export async function mockAddMeal(meal: Omit<MealEntry, 'id' | 'created_at' | 'u
   return { success: true, data: newMeal, error: null }
 }
 
-export async function mockUpdateMeal(id: string, quantity: number, notes?: string): Promise<ApiResponse<MealEntry>> {
+export async function mockUpdateMeal(
+  id: string,
+  quantity: number,
+  notes?: string
+): Promise<ApiResponse<MealEntry>> {
   await simulateDelay(MOCK_DELAY_MS.normal)
   const index = localMeals.findIndex((m) => m.id === id)
   if (index === -1) {
-    return { success: false, data: null, error: { code: 'NOT_FOUND', message: 'Meal entry not found' } }
+    return {
+      success: false,
+      data: null,
+      error: { code: 'NOT_FOUND', message: 'Meal entry not found' },
+    }
   }
 
   const existing = localMeals[index]!

@@ -40,7 +40,7 @@ function MacroRow({ label, current, goal, color, unit = 'g' }: MacroRowProps) {
         color={color}
         aria-label={`${label}: ${percentage}% of daily goal`}
       />
-      <p className="text-xs text-muted-foreground text-right">{percentage}%</p>
+      <p className="text-right text-xs text-muted-foreground">{percentage}%</p>
     </div>
   )
 }

@@ -7,10 +7,16 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Calendar, ChevronLeft, ChevronRight, RefreshCw, Sparkles } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { MealCard } from '@/features/meal-logger/meal-card'
 import { ConfirmModal } from '@/components/ui/confirm-modal'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
 import { ErrorState } from '@/components/ui/error-state'
 import { SkeletonCard } from '@/components/ui/skeleton'
 import { mockGetMeals, mockUpdateMeal, mockDeleteMeal } from '@/lib/mock-api/meals'
@@ -20,9 +26,7 @@ import type { MealEntry } from '@/types'
 
 export default function MealLoggerPage() {
   const queryClient = useQueryClient()
-  const [date, setDate] = React.useState<string>(
-    new Date().toISOString().split('T')[0] as string
-  )
+  const [date, setDate] = React.useState<string>(new Date().toISOString().split('T')[0] as string)
 
   // Modals state
   const [deleteId, setDeleteId] = React.useState<string | null>(null)
@@ -132,18 +136,28 @@ export default function MealLoggerPage() {
         title="Meal Log"
         description="Track your daily food intake, view nutritional breakdowns and trends."
         action={
-          <div className="flex items-center gap-1 bg-card border border-border p-1 rounded-lg shadow-sm">
-            <Button variant="ghost" size="icon-sm" onClick={() => changeDate(-1)} aria-label="Previous day">
+          <div className="flex items-center gap-1 rounded-lg border border-border bg-card p-1 shadow-sm">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={() => changeDate(-1)}
+              aria-label="Previous day"
+            >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <span className="text-xs font-semibold px-2 text-foreground min-w-[90px] text-center select-none">
+            <span className="min-w-[90px] select-none px-2 text-center text-xs font-semibold text-foreground">
               {new Date(date).toLocaleDateString('en-US', {
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric',
               })}
             </span>
-            <Button variant="ghost" size="icon-sm" onClick={() => changeDate(1)} aria-label="Next day">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={() => changeDate(1)}
+              aria-label="Next day"
+            >
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
@@ -151,22 +165,30 @@ export default function MealLoggerPage() {
       />
 
       {/* Daily Nutritional Summary Bar */}
-      <Card className="mb-6 bg-card border-border shadow-xs">
-        <CardContent className="py-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <Card className="mb-6 border-border bg-card shadow-xs">
+        <CardContent className="grid grid-cols-2 gap-4 py-4 text-center md:grid-cols-4">
           <div className="space-y-0.5">
-            <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Total Calories</p>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Total Calories
+            </p>
             <p className="text-lg font-bold text-foreground">{totalCalories} kcal</p>
           </div>
           <div className="space-y-0.5">
-            <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider text-macro-protein">Protein</p>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-macro-protein text-muted-foreground">
+              Protein
+            </p>
             <p className="text-lg font-bold text-foreground">{totalProtein.toFixed(1)}g</p>
           </div>
           <div className="space-y-0.5">
-            <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider text-macro-carbs">Carbohydrates</p>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-macro-carbs text-muted-foreground">
+              Carbohydrates
+            </p>
             <p className="text-lg font-bold text-foreground">{totalCarbs.toFixed(1)}g</p>
           </div>
           <div className="space-y-0.5">
-            <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider text-macro-fat">Fat</p>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-macro-fat text-muted-foreground">
+              Fat
+            </p>
             <p className="text-lg font-bold text-foreground">{totalFat.toFixed(1)}g</p>
           </div>
         </CardContent>
@@ -230,7 +252,7 @@ export default function MealLoggerPage() {
             <div className="space-y-4 py-2">
               <div className="space-y-1">
                 <Label>Food Item</Label>
-                <div className="text-sm font-semibold text-foreground p-2 bg-muted rounded-lg">
+                <div className="rounded-lg bg-muted p-2 text-sm font-semibold text-foreground">
                   {editEntry.food.name}
                 </div>
               </div>

@@ -44,29 +44,37 @@ export default function AnalyticsPage() {
   const monthly = monthlyRes?.data
 
   const renderStatsSummary = (cal: number, p: number, c: number, f: number) => (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      <Card className="bg-card border-border shadow-xs">
+    <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <Card className="border-border bg-card shadow-xs">
         <CardContent className="py-4">
-          <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Avg Calories</p>
-          <p className="text-xl font-bold text-foreground mt-0.5">{formatCalories(cal)}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            Avg Calories
+          </p>
+          <p className="mt-0.5 text-xl font-bold text-foreground">{formatCalories(cal)}</p>
         </CardContent>
       </Card>
-      <Card className="bg-card border-border shadow-xs">
+      <Card className="border-border bg-card shadow-xs">
         <CardContent className="py-4">
-          <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider text-macro-protein">Avg Protein</p>
-          <p className="text-xl font-bold text-foreground mt-0.5">{formatGrams(p)}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-macro-protein text-muted-foreground">
+            Avg Protein
+          </p>
+          <p className="mt-0.5 text-xl font-bold text-foreground">{formatGrams(p)}</p>
         </CardContent>
       </Card>
-      <Card className="bg-card border-border shadow-xs">
+      <Card className="border-border bg-card shadow-xs">
         <CardContent className="py-4">
-          <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider text-macro-carbs">Avg Carbs</p>
-          <p className="text-xl font-bold text-foreground mt-0.5">{formatGrams(c)}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-macro-carbs text-muted-foreground">
+            Avg Carbs
+          </p>
+          <p className="mt-0.5 text-xl font-bold text-foreground">{formatGrams(c)}</p>
         </CardContent>
       </Card>
-      <Card className="bg-card border-border shadow-xs">
+      <Card className="border-border bg-card shadow-xs">
         <CardContent className="py-4">
-          <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider text-macro-fat">Avg Fat</p>
-          <p className="text-xl font-bold text-foreground mt-0.5">{formatGrams(f)}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-macro-fat text-muted-foreground">
+            Avg Fat
+          </p>
+          <p className="mt-0.5 text-xl font-bold text-foreground">{formatGrams(f)}</p>
         </CardContent>
       </Card>
     </div>
@@ -88,7 +96,7 @@ export default function AnalyticsPage() {
         <TabsContent value="7days" className="space-y-6 outline-none">
           {isWeeklyLoading ? (
             <div className="space-y-6" aria-busy="true">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <SkeletonCard key={i} />
                 ))}
@@ -112,7 +120,7 @@ export default function AnalyticsPage() {
               )}
 
               <div className="grid gap-4 lg:grid-cols-3">
-                <div className="lg:col-span-2 space-y-4">
+                <div className="space-y-4 lg:col-span-2">
                   <CalorieTrendChart
                     data={weekly.daily_calories}
                     title="Weekly Calorie Intake"
@@ -136,7 +144,7 @@ export default function AnalyticsPage() {
         <TabsContent value="30days" className="space-y-6 outline-none">
           {isMonthlyLoading ? (
             <div className="space-y-6" aria-busy="true">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <SkeletonCard key={i} />
                 ))}
@@ -160,7 +168,7 @@ export default function AnalyticsPage() {
               )}
 
               <div className="grid gap-4 lg:grid-cols-3">
-                <div className="lg:col-span-2 space-y-4">
+                <div className="space-y-4 lg:col-span-2">
                   <CalorieTrendChart
                     data={monthly.daily_calories}
                     title="Monthly Calorie Intake"

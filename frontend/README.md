@@ -91,6 +91,7 @@ export async function mockGetMeals(date: string): Promise<ApiResponse<MealEntry[
 ### Swapping to Live Backend (Phase 5 Integration)
 
 To connect the real database and FastAPI backend:
+
 1. Create a `lib/api/` folder.
 2. Re-implement the mock-api functions (e.g. `getMeals()`, `login()`, `searchFoods()`) with actual Axios calls pointing to the FastAPI baseURL.
 3. Update import paths in page components from `@/lib/mock-api` to `@/lib/api`.

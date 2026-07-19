@@ -30,7 +30,7 @@ export default function SettingsPage() {
         notifications: updatedNotifications,
       })
       toast.success('Notification settings saved')
-    } catch (e: any) {
+    } catch {
       toast.error('Failed to save settings')
     }
   }
@@ -45,7 +45,7 @@ export default function SettingsPage() {
         privacy: updatedPrivacy,
       })
       toast.success('Privacy settings saved')
-    } catch (e: any) {
+    } catch {
       toast.error('Failed to save settings')
     }
   }
@@ -59,7 +59,7 @@ export default function SettingsPage() {
         },
       })
       toast.success(`Unit system switched to ${system}`)
-    } catch (e: any) {
+    } catch {
       toast.error('Failed to switch unit system')
     }
   }
@@ -88,7 +88,7 @@ export default function SettingsPage() {
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <Sun className="h-4.5 w-4.5 text-muted-foreground" />
-              <CardTitle className="text-sm font-semibold text-foreground uppercase tracking-wider">
+              <CardTitle className="text-sm font-semibold uppercase tracking-wider text-foreground">
                 Display Theme
               </CardTitle>
             </div>
@@ -110,7 +110,7 @@ export default function SettingsPage() {
                   type="button"
                   onClick={() => setTheme(t.val)}
                   className={cn(
-                    'flex flex-col items-center justify-center p-3 rounded-xl border text-xs font-semibold gap-1.5 transition-all duration-fast',
+                    'flex flex-col items-center justify-center gap-1.5 rounded-xl border p-3 text-xs font-semibold transition-all duration-fast',
                     isSelected
                       ? 'border-accent bg-accent-subtle text-accent shadow-xs'
                       : 'border-border bg-card text-muted-foreground hover:bg-muted'
@@ -129,7 +129,7 @@ export default function SettingsPage() {
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <User className="h-4.5 w-4.5 text-muted-foreground" />
-              <CardTitle className="text-sm font-semibold text-foreground uppercase tracking-wider">
+              <CardTitle className="text-sm font-semibold uppercase tracking-wider text-foreground">
                 Measurement Units
               </CardTitle>
             </div>
@@ -142,7 +142,7 @@ export default function SettingsPage() {
               type="button"
               onClick={() => handleChangeUnitSystem('metric')}
               className={cn(
-                'p-3 rounded-xl border text-xs font-semibold transition-all duration-fast',
+                'rounded-xl border p-3 text-xs font-semibold transition-all duration-fast',
                 settings.display.unit_system === 'metric'
                   ? 'border-accent bg-accent-subtle text-accent shadow-xs'
                   : 'border-border bg-card text-muted-foreground hover:bg-muted'
@@ -154,7 +154,7 @@ export default function SettingsPage() {
               type="button"
               onClick={() => handleChangeUnitSystem('imperial')}
               className={cn(
-                'p-3 rounded-xl border text-xs font-semibold transition-all duration-fast',
+                'rounded-xl border p-3 text-xs font-semibold transition-all duration-fast',
                 settings.display.unit_system === 'imperial'
                   ? 'border-accent bg-accent-subtle text-accent shadow-xs'
                   : 'border-border bg-card text-muted-foreground hover:bg-muted'
@@ -170,7 +170,7 @@ export default function SettingsPage() {
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <Bell className="h-4.5 w-4.5 text-muted-foreground" />
-              <CardTitle className="text-sm font-semibold text-foreground uppercase tracking-wider">
+              <CardTitle className="text-sm font-semibold uppercase tracking-wider text-foreground">
                 Notification Rules
               </CardTitle>
             </div>
@@ -181,31 +181,34 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             {[
               {
-                key: 'meal_reminders',
+                key: 'meal_reminders' as const,
                 label: 'Meal reminders',
                 desc: 'Get notified if you forget to log breakfast, lunch, or dinner.',
               },
               {
-                key: 'goal_completion',
+                key: 'goal_completion' as const,
                 label: 'Goal achievements',
                 desc: 'Get alerts when you reach your daily macronutrient and calorie targets.',
               },
               {
-                key: 'weekly_reports',
+                key: 'weekly_reports' as const,
                 label: 'Weekly reports',
                 desc: 'Receive a compiled PDF analysis of your nutrition compliance every Monday.',
               },
               {
-                key: 'email_updates',
+                key: 'email_updates' as const,
                 label: 'Email updates',
                 desc: 'Stay informed with features updates, product tips, and newsletter content.',
               },
             ].map((n) => {
-              const checked = settings.notifications[n.key as keyof typeof settings.notifications]
+              const checked = settings.notifications[n.key]
               return (
                 <div key={n.key} className="flex items-start justify-between gap-4">
                   <div className="space-y-0.5">
-                    <Label htmlFor={`notif-${n.key}`} className="text-sm font-semibold cursor-pointer">
+                    <Label
+                      htmlFor={`notif-${n.key}`}
+                      className="cursor-pointer text-sm font-semibold"
+                    >
                       {n.label}
                     </Label>
                     <p className="text-xs text-muted-foreground">{n.desc}</p>
@@ -213,7 +216,7 @@ export default function SettingsPage() {
                   <button
                     id={`notif-${n.key}`}
                     type="button"
-                    onClick={() => handleToggleNotification(n.key as any)}
+                    onClick={() => handleToggleNotification(n.key)}
                     className={cn(
                       'relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                       checked ? 'bg-accent' : 'bg-muted'
@@ -239,7 +242,7 @@ export default function SettingsPage() {
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <Shield className="h-4.5 w-4.5 text-muted-foreground" />
-              <CardTitle className="text-sm font-semibold text-foreground uppercase tracking-wider">
+              <CardTitle className="text-sm font-semibold uppercase tracking-wider text-foreground">
                 Privacy Options
               </CardTitle>
             </div>
@@ -250,21 +253,24 @@ export default function SettingsPage() {
           <CardContent className="space-y-4">
             {[
               {
-                key: 'profile_public',
+                key: 'profile_public' as const,
                 label: 'Public Profile Visibility',
                 desc: 'Allow search engines or other logged-in users to search for your profile card.',
               },
               {
-                key: 'share_progress',
+                key: 'share_progress' as const,
                 label: 'Share progress stats',
                 desc: 'Allow friends or coaches to view details of your calorie and macro trends.',
               },
             ].map((p) => {
-              const checked = settings.privacy[p.key as keyof typeof settings.privacy]
+              const checked = settings.privacy[p.key]
               return (
                 <div key={p.key} className="flex items-start justify-between gap-4">
                   <div className="space-y-0.5">
-                    <Label htmlFor={`priv-${p.key}`} className="text-sm font-semibold cursor-pointer">
+                    <Label
+                      htmlFor={`priv-${p.key}`}
+                      className="cursor-pointer text-sm font-semibold"
+                    >
                       {p.label}
                     </Label>
                     <p className="text-xs text-muted-foreground">{p.desc}</p>
@@ -272,7 +278,7 @@ export default function SettingsPage() {
                   <button
                     id={`priv-${p.key}`}
                     type="button"
-                    onClick={() => handleTogglePrivacy(p.key as any)}
+                    onClick={() => handleTogglePrivacy(p.key)}
                     className={cn(
                       'relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                       checked ? 'bg-accent' : 'bg-muted'
@@ -296,14 +302,14 @@ export default function SettingsPage() {
         {/* Destructive Section */}
         <Card className="border-danger/20 bg-danger-subtle/10 shadow-xs">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-semibold text-danger uppercase tracking-wider">
+            <CardTitle className="text-sm font-semibold uppercase tracking-wider text-danger">
               Danger Zone
             </CardTitle>
             <CardDescription className="text-xs text-danger/80">
               Irreversible destructive actions
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <CardContent className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-0.5">
               <span className="text-sm font-bold text-foreground">Delete Account</span>
               <p className="text-xs text-muted-foreground">
@@ -316,7 +322,7 @@ export default function SettingsPage() {
               onClick={() => setDeleteOpen(true)}
               className="w-full sm:w-auto"
             >
-              <Trash2 className="h-3.5 w-3.5 mr-1.5" />
+              <Trash2 className="mr-1.5 h-3.5 w-3.5" />
               Delete Account
             </Button>
           </CardContent>

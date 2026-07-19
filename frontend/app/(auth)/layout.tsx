@@ -15,8 +15,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="flex min-h-screen flex-col bg-background">
       {/* Top bar with logo */}
-      <header className="flex h-16 items-center border-b border-border px-6" aria-label="Application header">
-        <Link href="/" className="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg">
+      <header
+        className="flex h-16 items-center border-b border-border px-6"
+        aria-label="Application header"
+      >
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
             <Leaf className="h-4 w-4 text-primary-foreground" aria-hidden="true" />
           </div>
@@ -26,9 +32,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
       {/* Centered content */}
       <main className="flex flex-1 items-center justify-center px-4 py-12">
-        <div className="w-full max-w-[440px]">
-          {children}
-        </div>
+        <div className="w-full max-w-[440px]">{children}</div>
       </main>
 
       {/* Footer */}

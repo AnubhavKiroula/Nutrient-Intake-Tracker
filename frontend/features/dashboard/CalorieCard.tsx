@@ -22,7 +22,9 @@ export function CalorieCard({ consumed, goal, className }: CalorieCardProps) {
     <Card className={cn('transition-shadow hover:shadow-card-hover', className)}>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-sm font-medium text-muted-foreground">Daily Calories</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            Daily Calories
+          </CardTitle>
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-subtle">
             <Flame className="h-4 w-4 text-accent" aria-hidden="true" />
           </div>
@@ -34,11 +36,20 @@ export function CalorieCard({ consumed, goal, className }: CalorieCardProps) {
             {formatNumber(consumed)}
           </span>
           <span className="mb-1 text-sm text-muted-foreground">/ {formatNumber(goal)} kcal</span>
-          <Badge variant={isOver ? 'danger' : status === 'near' ? 'warning' : 'success'} className="mb-1 ml-auto">
+          <Badge
+            variant={isOver ? 'danger' : status === 'near' ? 'warning' : 'success'}
+            className="mb-1 ml-auto"
+          >
             {isOver ? (
-              <><TrendingUp className="h-3 w-3" />{formatNumber(Math.abs(remaining))} over</>
+              <>
+                <TrendingUp className="h-3 w-3" />
+                {formatNumber(Math.abs(remaining))} over
+              </>
             ) : (
-              <><TrendingDown className="h-3 w-3" />{formatCalories(remaining)} left</>
+              <>
+                <TrendingDown className="h-3 w-3" />
+                {formatCalories(remaining)} left
+              </>
             )}
           </Badge>
         </div>

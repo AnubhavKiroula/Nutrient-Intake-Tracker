@@ -19,7 +19,13 @@ interface WaterTrackerProps {
 
 const QUICK_ADD_OPTIONS = [250, 350, 500] as const
 
-export function WaterTracker({ current, goal, loading = false, onRefetch, className }: WaterTrackerProps) {
+export function WaterTracker({
+  current,
+  goal,
+  loading = false,
+  onRefetch,
+  className,
+}: WaterTrackerProps) {
   const [adding, setAdding] = useState(false)
   const percentage = calculatePercentage(current, goal)
   const today = new Date().toISOString().split('T')[0] as string
@@ -29,7 +35,10 @@ export function WaterTracker({ current, goal, loading = false, onRefetch, classN
     const res = await mockAddWater(today, amount)
     setAdding(false)
     if (res.success) {
-      toast.success(`+${formatVolume(amount)} added`, `Total: ${formatVolume((res.data?.total_ml) ?? current + amount)}`)
+      toast.success(
+        `+${formatVolume(amount)} added`,
+        `Total: ${formatVolume(res.data?.total_ml ?? current + amount)}`
+      )
       onRefetch?.()
     }
   }
@@ -46,7 +55,9 @@ export function WaterTracker({ current, goal, loading = false, onRefetch, classN
       </CardHeader>
       <CardContent>
         <div className="flex items-baseline gap-1">
-          <span className="text-3xl font-bold tracking-tight text-foreground">{formatVolume(current)}</span>
+          <span className="text-3xl font-bold tracking-tight text-foreground">
+            {formatVolume(current)}
+          </span>
           <span className="text-sm text-muted-foreground">/ {formatVolume(goal)}</span>
         </div>
 

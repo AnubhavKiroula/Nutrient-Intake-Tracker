@@ -11,13 +11,23 @@ interface GoalCompletionRingProps {
   className?: string
 }
 
-export function GoalCompletionRing({ percentage, mealsLogged, className }: GoalCompletionRingProps) {
+export function GoalCompletionRing({
+  percentage,
+  mealsLogged,
+  className,
+}: GoalCompletionRingProps) {
   const radius = 36
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (percentage / 100) * circumference
   const isCompleted = percentage >= 100
 
-  const strokeColor = isCompleted ? '#22C55E' : percentage >= 75 ? '#2563EB' : percentage >= 50 ? '#F59E0B' : '#E2E8F0'
+  const strokeColor = isCompleted
+    ? '#22C55E'
+    : percentage >= 75
+      ? '#2563EB'
+      : percentage >= 50
+        ? '#F59E0B'
+        : '#E2E8F0'
 
   return (
     <Card className={cn('transition-shadow hover:shadow-card-hover', className)}>
@@ -37,10 +47,20 @@ export function GoalCompletionRing({ percentage, mealsLogged, className }: GoalC
         <div className="relative" aria-label={`${percentage}% of daily goal completed`} role="img">
           <svg width="88" height="88" viewBox="0 0 88 88" className="-rotate-90" aria-hidden="true">
             {/* Background ring */}
-            <circle cx="44" cy="44" r={radius} fill="none" stroke="currentColor" strokeWidth="8" className="text-muted" />
+            <circle
+              cx="44"
+              cy="44"
+              r={radius}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="8"
+              className="text-muted"
+            />
             {/* Progress ring */}
             <circle
-              cx="44" cy="44" r={radius}
+              cx="44"
+              cy="44"
+              r={radius}
               fill="none"
               stroke={strokeColor}
               strokeWidth="8"

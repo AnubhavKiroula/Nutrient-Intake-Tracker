@@ -30,7 +30,7 @@ export function MealCard({
   const totalFat = entries.reduce((sum, item) => sum + item.nutrition.fat_g, 0)
 
   return (
-    <Card className="transition-all duration-slow hover:shadow-md border-border">
+    <Card className="border-border transition-all duration-slow hover:shadow-md">
       <CardHeader className="flex flex-row items-center justify-between pb-3">
         <div className="flex items-center gap-2">
           <span className="text-xl" aria-hidden="true">
@@ -46,22 +46,22 @@ export function MealCard({
           </div>
         </div>
         <div className="text-right">
-          <Badge variant="secondary" className="font-bold text-sm">
+          <Badge variant="secondary" className="text-sm font-bold">
             {formatCalories(totalCalories)}
           </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
         {entries.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-6 text-center border border-dashed border-border rounded-xl bg-muted/20">
+          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/20 py-6 text-center">
             <p className="text-xs text-muted-foreground">No food logged for this meal</p>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => onAddFood(mealType)}
-              className="mt-2 text-xs text-accent hover:text-accent/80 font-medium"
+              className="mt-2 text-xs font-medium text-accent hover:text-accent/80"
             >
-              <Plus className="h-3 w-3 mr-1" />
+              <Plus className="mr-1 h-3 w-3" />
               Add food
             </Button>
           </div>
@@ -76,7 +76,7 @@ export function MealCard({
                 >
                   <div className="min-w-0 flex-1 pr-4">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-semibold text-sm text-foreground truncate block">
+                      <span className="block truncate text-sm font-semibold text-foreground">
                         {entry.food.name}
                       </span>
                       {entry.food.verified && (
@@ -84,15 +84,16 @@ export function MealCard({
                       )}
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      {entry.quantity} {entry.serving_unit} · {formatCalories(entry.nutrition.calories)}
+                      {entry.quantity} {entry.serving_unit} ·{' '}
+                      {formatCalories(entry.nutrition.calories)}
                     </p>
                     {entry.notes && (
-                      <p className="text-[10px] text-muted-foreground/80 italic mt-0.5">
+                      <p className="mt-0.5 text-[10px] italic text-muted-foreground/80">
                         Note: {entry.notes}
                       </p>
                     )}
                   </div>
-                  <div className="flex items-center gap-1.5 shrink-0">
+                  <div className="flex shrink-0 items-center gap-1.5">
                     <Button
                       variant="ghost"
                       size="icon-sm"
@@ -106,7 +107,7 @@ export function MealCard({
                       variant="ghost"
                       size="icon-sm"
                       onClick={() => onDeleteEntry(entry.id)}
-                      className="text-muted-foreground hover:text-danger hover:bg-danger-subtle"
+                      className="text-muted-foreground hover:bg-danger-subtle hover:text-danger"
                       aria-label={`Delete ${entry.food.name}`}
                     >
                       <Trash2 className="h-3.5 w-3.5" />
@@ -117,14 +118,14 @@ export function MealCard({
             </ul>
 
             {/* Quick Macro Breakdown */}
-            <div className="grid grid-cols-3 gap-1 pt-3 border-t border-border text-center text-[10px] font-medium text-muted-foreground">
-              <div className="bg-muted/40 py-1 rounded">
+            <div className="grid grid-cols-3 gap-1 border-t border-border pt-3 text-center text-[10px] font-medium text-muted-foreground">
+              <div className="rounded bg-muted/40 py-1">
                 <span className="text-macro-protein">P:</span> {totalProtein.toFixed(1)}g
               </div>
-              <div className="bg-muted/40 py-1 rounded">
+              <div className="rounded bg-muted/40 py-1">
                 <span className="text-macro-carbs">C:</span> {totalCarbs.toFixed(1)}g
               </div>
-              <div className="bg-muted/40 py-1 rounded">
+              <div className="rounded bg-muted/40 py-1">
                 <span className="text-macro-fat">F:</span> {totalFat.toFixed(1)}g
               </div>
             </div>
@@ -135,7 +136,7 @@ export function MealCard({
               className="w-full text-xs"
               onClick={() => onAddFood(mealType)}
             >
-              <Plus className="h-3.5 w-3.5 mr-1" />
+              <Plus className="mr-1 h-3.5 w-3.5" />
               Add more food
             </Button>
           </div>

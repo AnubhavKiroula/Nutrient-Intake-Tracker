@@ -9,7 +9,14 @@ import { Eye, EyeOff, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { mockLogin } from '@/lib/mock-api'
 import { toast } from '@/hooks/useToast'
 import { ROUTES } from '@/lib/constants'
@@ -34,7 +41,9 @@ export default function LoginPage() {
     if (res.success) {
       toast.success('Welcome back!', 'Redirecting to your dashboard...')
       // Phase 4: Replace with real session store + router.push(ROUTES.DASHBOARD)
-      setTimeout(() => { window.location.href = ROUTES.DASHBOARD }, 1000)
+      setTimeout(() => {
+        window.location.href = ROUTES.DASHBOARD
+      }, 1000)
     } else {
       toast.error('Sign in failed', res.error?.message ?? 'Please check your credentials')
     }
@@ -77,7 +86,7 @@ export default function LoginPage() {
               <Label htmlFor="password">Password</Label>
               <Link
                 href={ROUTES.FORGOT_PASSWORD}
-                className="text-xs text-accent hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded"
+                className="rounded text-xs text-accent hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
               >
                 Forgot password?
               </Link>
@@ -96,10 +105,14 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? <EyeOff className="h-4 w-4" aria-hidden="true" /> : <Eye className="h-4 w-4" aria-hidden="true" />}
+                {showPassword ? (
+                  <EyeOff className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <Eye className="h-4 w-4" aria-hidden="true" />
+                )}
               </button>
             </div>
             {errors.password && (
@@ -118,7 +131,7 @@ export default function LoginPage() {
       <CardFooter className="justify-center">
         <p className="text-sm text-muted-foreground">
           Don&apos;t have an account?{' '}
-          <Link href={ROUTES.REGISTER} className="text-accent font-medium hover:underline">
+          <Link href={ROUTES.REGISTER} className="font-medium text-accent hover:underline">
             Create one
           </Link>
         </p>

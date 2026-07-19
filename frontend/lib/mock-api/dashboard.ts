@@ -69,7 +69,10 @@ export async function mockGetWaterSummary(date: string): Promise<ApiResponse<Wat
   }
 }
 
-export async function mockAddWater(date: string, amount_ml: number): Promise<ApiResponse<{ added: boolean; total_ml: number }>> {
+export async function mockAddWater(
+  date: string,
+  amount_ml: number
+): Promise<ApiResponse<{ added: boolean; total_ml: number }>> {
   await simulateDelay(MOCK_DELAY_MS.fast)
   return {
     success: true,

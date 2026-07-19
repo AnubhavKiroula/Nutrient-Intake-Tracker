@@ -18,7 +18,12 @@ export interface PageContainerProps {
  * PageContainer — consistent spacing wrapper for all dashboard pages.
  * Apply to every dashboard page's content area.
  */
-export function PageContainer({ children, className, narrow = false, noPadding = false }: PageContainerProps) {
+export function PageContainer({
+  children,
+  className,
+  narrow = false,
+  noPadding = false,
+}: PageContainerProps) {
   return (
     <main
       className={cn(

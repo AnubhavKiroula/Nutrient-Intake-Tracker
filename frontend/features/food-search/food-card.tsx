@@ -21,18 +21,24 @@ export function FoodCard({ food, onSelect }: FoodCardProps) {
       onClick={() => onSelect(food)}
       className="card-interactive flex items-center justify-between p-3.5"
     >
-      <div className="flex items-center gap-3 min-w-0">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-lg" aria-hidden="true">
+      <div className="flex min-w-0 items-center gap-3">
+        <div
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-lg"
+          aria-hidden="true"
+        >
           {categoryIcon}
         </div>
         <div className="min-w-0">
           <div className="flex items-center gap-1.5">
-            <span className="font-semibold text-sm text-foreground truncate">{food.name}</span>
+            <span className="truncate text-sm font-semibold text-foreground">{food.name}</span>
             {food.verified && (
-              <CheckCircle2 className="h-3.5 w-3.5 text-accent shrink-0" aria-label="Verified food data" />
+              <CheckCircle2
+                className="h-3.5 w-3.5 shrink-0 text-accent"
+                aria-label="Verified food data"
+              />
             )}
           </div>
-          <p className="text-xs text-muted-foreground truncate">
+          <p className="truncate text-xs text-muted-foreground">
             {food.brand ? `${food.brand} · ` : ''}
             {food.serving_size} {food.serving_unit}
           </p>
@@ -40,8 +46,10 @@ export function FoodCard({ food, onSelect }: FoodCardProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="text-right shrink-0">
-          <p className="text-sm font-bold text-foreground">{formatCalories(food.nutrition.calories)}</p>
+        <div className="shrink-0 text-right">
+          <p className="text-sm font-bold text-foreground">
+            {formatCalories(food.nutrition.calories)}
+          </p>
           <p className="text-[10px] text-muted-foreground">per serving</p>
         </div>
         <ChevronRight className="h-4 w-4 text-muted-foreground" aria-hidden="true" />

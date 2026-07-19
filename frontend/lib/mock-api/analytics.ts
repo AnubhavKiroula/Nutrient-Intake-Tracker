@@ -5,10 +5,7 @@
 import { simulateDelay } from '@/lib/utils'
 import { MOCK_DELAY_MS } from '@/lib/constants'
 import type { ApiResponse, WeeklyAnalytics, MonthlyAnalytics, Report } from '@/types'
-import {
-  MOCK_WEEKLY_ANALYTICS,
-  MOCK_MONTHLY_ANALYTICS,
-} from './fixtures/analytics'
+import { MOCK_WEEKLY_ANALYTICS, MOCK_MONTHLY_ANALYTICS } from './fixtures/analytics'
 
 export async function mockGetWeeklyAnalytics(): Promise<ApiResponse<WeeklyAnalytics>> {
   await simulateDelay(MOCK_DELAY_MS.normal)

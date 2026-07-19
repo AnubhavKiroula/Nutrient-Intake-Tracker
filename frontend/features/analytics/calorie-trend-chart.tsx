@@ -1,7 +1,16 @@
 'use client'
 
 import * as React from 'react'
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ReferenceLine,
+} from 'recharts'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { formatCalories, formatNumber } from '@/lib/utils'
 import type { DailyCalorieData } from '@/types'
@@ -27,14 +36,14 @@ export function CalorieTrendChart({ data, title, description }: CalorieTrendChar
   return (
     <Card className="border-border bg-card shadow-xs">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           {title}
         </CardTitle>
         {description && <CardDescription className="text-xs">{description}</CardDescription>}
       </CardHeader>
       <CardContent className="h-[260px]">
         {chartData.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-xs text-muted-foreground">
+          <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
             No trend data available
           </div>
         ) : (

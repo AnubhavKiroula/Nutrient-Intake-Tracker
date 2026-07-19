@@ -50,32 +50,56 @@ export const MEAL_TYPE_ICONS: Record<MealType, string> = {
 // ── Nutrition Goals (defaults for new users) ─────────────────
 export const DEFAULT_NUTRITION_GOALS = {
   calories: 2000,
-  protein: 150,   // grams
-  carbs: 250,     // grams
-  fat: 65,        // grams
-  fiber: 25,      // grams
-  water: 2500,    // ml
-  sodium: 2300,   // mg
-  sugar: 50,      // grams
+  protein: 150, // grams
+  carbs: 250, // grams
+  fat: 65, // grams
+  fiber: 25, // grams
+  water: 2500, // ml
+  sodium: 2300, // mg
+  sugar: 50, // grams
 } as const
 
 // ── Activity Levels ──────────────────────────────────────────
 export const ACTIVITY_LEVELS = [
   { value: 'sedentary', label: 'Sedentary', description: 'Little or no exercise' },
   { value: 'lightly_active', label: 'Lightly Active', description: 'Light exercise 1–3 days/week' },
-  { value: 'moderately_active', label: 'Moderately Active', description: 'Moderate exercise 3–5 days/week' },
+  {
+    value: 'moderately_active',
+    label: 'Moderately Active',
+    description: 'Moderate exercise 3–5 days/week',
+  },
   { value: 'very_active', label: 'Very Active', description: 'Hard exercise 6–7 days/week' },
-  { value: 'extra_active', label: 'Extra Active', description: 'Very hard exercise or physical job' },
+  {
+    value: 'extra_active',
+    label: 'Extra Active',
+    description: 'Very hard exercise or physical job',
+  },
 ] as const
 
 export type ActivityLevel = (typeof ACTIVITY_LEVELS)[number]['value']
 
 // ── Health Goals ─────────────────────────────────────────────
 export const HEALTH_GOALS = [
-  { value: 'lose_weight', label: 'Lose Weight', description: 'Reduce body weight with a calorie deficit' },
-  { value: 'maintain_weight', label: 'Maintain Weight', description: 'Stay at your current weight' },
-  { value: 'gain_muscle', label: 'Gain Muscle', description: 'Build lean muscle with a calorie surplus' },
-  { value: 'improve_fitness', label: 'Improve Fitness', description: 'General health and performance improvement' },
+  {
+    value: 'lose_weight',
+    label: 'Lose Weight',
+    description: 'Reduce body weight with a calorie deficit',
+  },
+  {
+    value: 'maintain_weight',
+    label: 'Maintain Weight',
+    description: 'Stay at your current weight',
+  },
+  {
+    value: 'gain_muscle',
+    label: 'Gain Muscle',
+    description: 'Build lean muscle with a calorie surplus',
+  },
+  {
+    value: 'improve_fitness',
+    label: 'Improve Fitness',
+    description: 'General health and performance improvement',
+  },
   { value: 'eat_healthier', label: 'Eat Healthier', description: 'Improve overall diet quality' },
 ] as const
 
@@ -116,8 +140,16 @@ export const UNIT_SYSTEMS = ['metric', 'imperial'] as const
 export type UnitSystem = (typeof UNIT_SYSTEMS)[number]
 
 export const SERVING_UNITS = [
-  'g', 'ml', 'oz', 'cup', 'tbsp', 'tsp',
-  'piece', 'slice', 'serving', 'portion',
+  'g',
+  'ml',
+  'oz',
+  'cup',
+  'tbsp',
+  'tsp',
+  'piece',
+  'slice',
+  'serving',
+  'portion',
 ] as const
 
 export type ServingUnit = (typeof SERVING_UNITS)[number]
@@ -144,20 +176,20 @@ export type ReportPeriod = (typeof REPORT_PERIODS)[number]
 
 // ── Chart Colors — mirrors tailwind.config.ts macro colors ───
 export const CHART_COLORS = {
-  calories: '#2563EB',   // accent blue
-  protein: '#2563EB',    // blue
-  carbs: '#22C55E',      // green
-  fat: '#F59E0B',        // amber
-  fiber: '#64748B',      // slate
-  water: '#0EA5E9',      // sky
-  sodium: '#F97316',     // orange
+  calories: '#2563EB', // accent blue
+  protein: '#2563EB', // blue
+  carbs: '#22C55E', // green
+  fat: '#F59E0B', // amber
+  fiber: '#64748B', // slate
+  water: '#0EA5E9', // sky
+  sodium: '#F97316', // orange
 } as const
 
 // ── Macro Ratio Defaults (%) ─────────────────────────────────
 export const DEFAULT_MACRO_RATIOS = {
-  protein: 30,  // 30% of calories
-  carbs: 40,    // 40% of calories
-  fat: 30,      // 30% of calories
+  protein: 30, // 30% of calories
+  carbs: 40, // 40% of calories
+  fat: 30, // 30% of calories
 } as const
 
 // ── Pagination ───────────────────────────────────────────────

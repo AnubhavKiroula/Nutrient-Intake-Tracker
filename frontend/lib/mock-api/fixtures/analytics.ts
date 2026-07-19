@@ -3,7 +3,13 @@
 // Realistic time-series data for charts
 // ============================================================
 
-import type { DailyCalorieData, WeeklyAnalytics, MonthlyAnalytics, NutrientDeficiency, TopFood } from '@/types'
+import type {
+  DailyCalorieData,
+  WeeklyAnalytics,
+  MonthlyAnalytics,
+  NutrientDeficiency,
+  TopFood,
+} from '@/types'
 import { MOCK_FOODS } from './foods'
 
 // ── Weekly (last 7 days) ─────────────────────────────────────
@@ -34,11 +40,46 @@ export const MOCK_TOP_FOODS: TopFood[] = [
 ]
 
 export const MOCK_DEFICIENCIES: NutrientDeficiency[] = [
-  { nutrient: 'Vitamin D', unit: 'mcg', current_avg: 4.2, recommended: 15, percentage: 28, severity: 'high' },
-  { nutrient: 'Calcium', unit: 'mg', current_avg: 720, recommended: 1000, percentage: 72, severity: 'low' },
-  { nutrient: 'Fiber', unit: 'g', current_avg: 18, recommended: 30, percentage: 60, severity: 'medium' },
-  { nutrient: 'Iron', unit: 'mg', current_avg: 12, recommended: 18, percentage: 67, severity: 'medium' },
-  { nutrient: 'Vitamin B12', unit: 'mcg', current_avg: 2.1, recommended: 2.4, percentage: 88, severity: 'low' },
+  {
+    nutrient: 'Vitamin D',
+    unit: 'mcg',
+    current_avg: 4.2,
+    recommended: 15,
+    percentage: 28,
+    severity: 'high',
+  },
+  {
+    nutrient: 'Calcium',
+    unit: 'mg',
+    current_avg: 720,
+    recommended: 1000,
+    percentage: 72,
+    severity: 'low',
+  },
+  {
+    nutrient: 'Fiber',
+    unit: 'g',
+    current_avg: 18,
+    recommended: 30,
+    percentage: 60,
+    severity: 'medium',
+  },
+  {
+    nutrient: 'Iron',
+    unit: 'mg',
+    current_avg: 12,
+    recommended: 18,
+    percentage: 67,
+    severity: 'medium',
+  },
+  {
+    nutrient: 'Vitamin B12',
+    unit: 'mcg',
+    current_avg: 2.1,
+    recommended: 2.4,
+    percentage: 88,
+    severity: 'low',
+  },
 ]
 
 export const MOCK_WEEKLY_ANALYTICS: WeeklyAnalytics = {

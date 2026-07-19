@@ -26,19 +26,17 @@ export function MacroDonut({ protein, carbs, fat }: MacroDonutProps) {
   return (
     <Card className="border-border bg-card shadow-xs">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Macro Ratio
         </CardTitle>
-        <CardDescription className="text-xs">
-          Caloric contribution breakdown
-        </CardDescription>
+        <CardDescription className="text-xs">Caloric contribution breakdown</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col items-center justify-center min-h-[220px]">
+      <CardContent className="flex min-h-[220px] flex-col items-center justify-center">
         {total === 0 ? (
           <p className="text-xs text-muted-foreground">No macros tracked for this period</p>
         ) : (
-          <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="w-[140px] h-[140px] shrink-0">
+          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="h-[140px] w-[140px] shrink-0">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Tooltip
@@ -68,12 +66,12 @@ export function MacroDonut({ protein, carbs, fat }: MacroDonutProps) {
             </div>
 
             {/* Custom Legend */}
-            <div className="space-y-2 text-xs w-full">
+            <div className="w-full space-y-2 text-xs">
               {data.map((item) => (
                 <div key={item.name} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span
-                      className="h-2.5 w-2.5 rounded-full shrink-0"
+                      className="h-2.5 w-2.5 shrink-0 rounded-full"
                       style={{ backgroundColor: item.color }}
                     />
                     <span className="font-medium text-foreground">{item.name}</span>

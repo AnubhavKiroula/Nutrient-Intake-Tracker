@@ -24,9 +24,10 @@ export async function mockSearchFoods(
     }
   }
 
-  let results = MOCK_FOODS.filter((food) =>
-    food.name.toLowerCase().includes(query.toLowerCase()) ||
-    (food.brand && food.brand.toLowerCase().includes(query.toLowerCase()))
+  let results = MOCK_FOODS.filter(
+    (food) =>
+      food.name.toLowerCase().includes(query.toLowerCase()) ||
+      (food.brand && food.brand.toLowerCase().includes(query.toLowerCase()))
   )
 
   // Apply category filter
@@ -36,15 +37,13 @@ export async function mockSearchFoods(
 
   // Apply dietary filter
   if (filters?.dietary && filters.dietary.length > 0) {
-    results = results.filter((food) =>
-      filters.dietary!.every((d) => food.dietary_tags.includes(d))
-    )
+    results = results.filter((food) => filters.dietary!.every((d) => food.dietary_tags.includes(d)))
   }
 
   // Apply allergen exclusion
   if (filters?.exclude_allergens && filters.exclude_allergens.length > 0) {
-    results = results.filter((food) =>
-      !food.allergens.some((a) => filters.exclude_allergens!.includes(a))
+    results = results.filter(
+      (food) => !food.allergens.some((a) => filters.exclude_allergens!.includes(a))
     )
   }
 

@@ -11,25 +11,25 @@ interface TopFoodsChartProps {
 }
 
 export function TopFoodsChart({ topFoods }: TopFoodsChartProps) {
-  const chartData = topFoods.map((item) => ({
-    name: item.food.name,
-    count: item.times_logged,
-    calories: item.total_calories,
-  })).sort((a, b) => b.count - a.count)
+  const chartData = topFoods
+    .map((item) => ({
+      name: item.food.name,
+      count: item.times_logged,
+      calories: item.total_calories,
+    }))
+    .sort((a, b) => b.count - a.count)
 
   return (
     <Card className="border-border bg-card shadow-xs">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+        <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
           Top Logged Foods
         </CardTitle>
-        <CardDescription className="text-xs">
-          Your most frequently consumed items
-        </CardDescription>
+        <CardDescription className="text-xs">Your most frequently consumed items</CardDescription>
       </CardHeader>
       <CardContent className="min-h-[220px]">
         {chartData.length === 0 ? (
-          <div className="flex items-center justify-center h-48 text-xs text-muted-foreground">
+          <div className="flex h-48 items-center justify-center text-xs text-muted-foreground">
             No logged items found
           </div>
         ) : (
@@ -62,10 +62,7 @@ export function TopFoodsChart({ topFoods }: TopFoodsChartProps) {
               />
               <Bar dataKey="count" fill="hsl(var(--accent))" radius={[0, 4, 4, 0]} barSize={12}>
                 {chartData.map((_, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={`hsl(var(--accent) / ${1 - index * 0.15})`}
-                  />
+                  <Cell key={`cell-${index}`} fill={`hsl(var(--accent) / ${1 - index * 0.15})`} />
                 ))}
               </Bar>
             </BarChart>

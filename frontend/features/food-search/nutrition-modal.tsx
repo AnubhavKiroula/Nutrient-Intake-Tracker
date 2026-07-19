@@ -27,12 +27,7 @@ interface NutritionModalProps {
   onLogMeal?: (food: Food, quantity: number, mealType: MealType, notes?: string) => Promise<void>
 }
 
-export function NutritionModal({
-  food,
-  open,
-  onOpenChange,
-  onLogMeal,
-}: NutritionModalProps) {
+export function NutritionModal({ food, open, onOpenChange, onLogMeal }: NutritionModalProps) {
   const [quantity, setQuantity] = React.useState<number>(1)
   const [mealType, setMealType] = React.useState<MealType>('breakfast')
   const [notes, setNotes] = React.useState('')
@@ -67,10 +62,7 @@ export function NutritionModal({
     setLogging(true)
     try {
       await onLogMeal(food, quantity, mealType, notes)
-      toast.success(
-        'Meal logged!',
-        `${food.name} added to your ${MEAL_TYPE_LABELS[mealType]}`
-      )
+      toast.success('Meal logged!', `${food.name} added to your ${MEAL_TYPE_LABELS[mealType]}`)
       onOpenChange(false)
     } catch (e: any) {
       toast.error('Logging failed', e.message || 'Please retry.')
@@ -84,7 +76,9 @@ export function NutritionModal({
       <DialogContent className="sm:max-w-[480px]">
         <DialogHeader>
           <div className="flex items-center gap-2">
-            <DialogTitle className="text-xl font-bold tracking-tight text-foreground">{food.name}</DialogTitle>
+            <DialogTitle className="text-xl font-bold tracking-tight text-foreground">
+              {food.name}
+            </DialogTitle>
             {food.verified && <CheckCircle2 className="h-4 w-4 text-accent" />}
           </div>
           <DialogDescription>
@@ -101,17 +95,17 @@ export function NutritionModal({
               <div className="text-lg font-bold text-foreground">{calories}</div>
               <div className="text-[10px] text-muted-foreground">kcal</div>
             </div>
-            <div className="rounded-lg bg-muted p-2 border-b-2 border-macro-protein">
+            <div className="rounded-lg border-b-2 border-macro-protein bg-muted p-2">
               <div className="text-xs text-muted-foreground">Protein</div>
               <div className="text-lg font-bold text-foreground">{formatNumber(protein, 1)}</div>
               <div className="text-[10px] text-muted-foreground">g ({proteinPct}%)</div>
             </div>
-            <div className="rounded-lg bg-muted p-2 border-b-2 border-macro-carbs">
+            <div className="rounded-lg border-b-2 border-macro-carbs bg-muted p-2">
               <div className="text-xs text-muted-foreground">Carbs</div>
               <div className="text-lg font-bold text-foreground">{formatNumber(carbs, 1)}</div>
               <div className="text-[10px] text-muted-foreground">g ({carbsPct}%)</div>
             </div>
-            <div className="rounded-lg bg-muted p-2 border-b-2 border-macro-fat">
+            <div className="rounded-lg border-b-2 border-macro-fat bg-muted p-2">
               <div className="text-xs text-muted-foreground">Fat</div>
               <div className="text-lg font-bold text-foreground">{formatNumber(fat, 1)}</div>
               <div className="text-[10px] text-muted-foreground">g ({fatPct}%)</div>
@@ -119,8 +113,8 @@ export function NutritionModal({
           </div>
 
           {/* Micro details */}
-          <div className="border-t border-border pt-3 space-y-2">
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          <div className="space-y-2 border-t border-border pt-3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Nutrient Details
             </h4>
             <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
@@ -139,7 +133,9 @@ export function NutritionModal({
               <div className="flex justify-between border-b border-border pb-1">
                 <span className="text-muted-foreground">Vitamin C</span>
                 <span className="font-medium text-foreground">
-                  {food.nutrition.vitamin_c_mg ? `${Math.round(food.nutrition.vitamin_c_mg * multiplier)} mg` : '0 mg'}
+                  {food.nutrition.vitamin_c_mg
+                    ? `${Math.round(food.nutrition.vitamin_c_mg * multiplier)} mg`
+                    : '0 mg'}
                 </span>
               </div>
             </div>
@@ -149,7 +145,7 @@ export function NutritionModal({
           {food.dietary_tags.length > 0 && food.dietary_tags[0] !== 'none' && (
             <div className="flex flex-wrap gap-1">
               {food.dietary_tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-[10px] px-1.5 py-0.5">
+                <Badge key={tag} variant="secondary" className="px-1.5 py-0.5 text-[10px]">
                   {tag.replace('_', ' ')}
                 </Badge>
               ))}
@@ -158,8 +154,8 @@ export function NutritionModal({
 
           {/* Logging Form Section */}
           {onLogMeal && (
-            <div className="border-t border-border pt-4 space-y-3 bg-muted/40 -mx-6 px-6 py-4">
-              <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            <div className="-mx-6 space-y-3 border-t border-border bg-muted/40 px-6 py-4 pt-4">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Log this item
               </h4>
               <div className="grid grid-cols-3 gap-3">
@@ -182,7 +178,7 @@ export function NutritionModal({
                   <Label htmlFor="log-meal-type" className="text-xs">
                     Meal Type
                   </Label>
-                  <div className="flex rounded-md border border-input overflow-hidden bg-background h-9">
+                  <div className="flex h-9 overflow-hidden rounded-md border border-input bg-background">
                     {MEAL_TYPES.map((type) => {
                       const isSelected = mealType === type
                       return (
@@ -191,9 +187,9 @@ export function NutritionModal({
                           type="button"
                           onClick={() => setMealType(type)}
                           className={cn(
-                            'flex-1 text-center text-xs font-medium border-r border-border last:border-r-0 transition-colors',
+                            'flex-1 border-r border-border text-center text-xs font-medium transition-colors last:border-r-0',
                             isSelected
-                              ? 'bg-accent text-accent-foreground font-semibold'
+                              ? 'bg-accent font-semibold text-accent-foreground'
                               : 'text-muted-foreground hover:bg-muted'
                           )}
                           title={MEAL_TYPE_LABELS[type]}
@@ -207,7 +203,9 @@ export function NutritionModal({
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="log-notes" className="text-xs">Notes (optional)</Label>
+                <Label htmlFor="log-notes" className="text-xs">
+                  Notes (optional)
+                </Label>
                 <Input
                   id="log-notes"
                   placeholder="e.g. extra sauce, workout day snack"

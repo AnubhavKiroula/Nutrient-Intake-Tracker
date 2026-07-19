@@ -29,7 +29,7 @@ export function MobileBottomNav() {
       className="fixed bottom-0 left-0 right-0 z-topbar border-t border-border bg-background/90 backdrop-blur-md lg:hidden"
       aria-label="Mobile bottom navigation"
     >
-      <ul className="flex items-stretch" role="list">
+      <ul className="flex items-stretch">
         {BOTTOM_NAV_ITEMS.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href || pathname.startsWith(href + '/')
           return (
@@ -37,12 +37,10 @@ export function MobileBottomNav() {
               <Link
                 href={href}
                 className={cn(
-                  'flex flex-col items-center justify-center gap-1 py-2.5 px-1',
+                  'flex flex-col items-center justify-center gap-1 px-1 py-2.5',
                   'text-xs font-medium transition-colors duration-fast',
-                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset',
-                  isActive
-                    ? 'text-accent'
-                    : 'text-muted-foreground hover:text-foreground'
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring',
+                  isActive ? 'text-accent' : 'text-muted-foreground hover:text-foreground'
                 )}
                 aria-current={isActive ? 'page' : undefined}
               >

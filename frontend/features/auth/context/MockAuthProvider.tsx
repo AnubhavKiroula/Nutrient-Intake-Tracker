@@ -54,7 +54,7 @@ export function MockAuthProvider({ children }: { children: React.ReactNode }) {
     if (!profile) return
     setIsLoading(true)
     await new Promise((resolve) => setTimeout(resolve, 500))
-    setProfile((prev) => prev ? { ...prev, ...updates } : null)
+    setProfile((prev) => (prev ? { ...prev, ...updates } : null))
     setIsLoading(false)
   }
 
@@ -62,7 +62,7 @@ export function MockAuthProvider({ children }: { children: React.ReactNode }) {
     if (!settings) return
     setIsLoading(true)
     await new Promise((resolve) => setTimeout(resolve, 500))
-    setSettings((prev) => prev ? { ...prev, ...updates } : null)
+    setSettings((prev) => (prev ? { ...prev, ...updates } : null))
     setIsLoading(false)
   }
 
@@ -70,7 +70,7 @@ export function MockAuthProvider({ children }: { children: React.ReactNode }) {
     if (!profile) return
     setIsLoading(true)
     await new Promise((resolve) => setTimeout(resolve, 1000))
-    setProfile((prev) => prev ? { ...prev, ...profileData, onboarding_completed: true } : null)
+    setProfile((prev) => (prev ? { ...prev, ...profileData, onboarding_completed: true } : null))
     setIsLoading(false)
   }
 

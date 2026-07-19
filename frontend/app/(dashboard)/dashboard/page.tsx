@@ -66,7 +66,7 @@ export default function DashboardPage() {
       />
 
       {/* ── Top row: Calories + Goal Ring ────────────────────── */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-4">
+      <div className="mb-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {summaryLoading ? (
           <>
             <SkeletonCard className="lg:col-span-2" />

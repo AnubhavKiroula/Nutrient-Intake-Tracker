@@ -19,7 +19,7 @@ export default function VerifyEmailPage() {
 
   return (
     <Card className="border-border shadow-card">
-      <CardContent className="pt-8 pb-8 text-center space-y-4">
+      <CardContent className="space-y-4 pb-8 pt-8 text-center">
         {state === 'loading' && (
           <>
             <Loader2 className="mx-auto h-12 w-12 animate-spin text-accent" />
@@ -36,9 +36,13 @@ export default function VerifyEmailPage() {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Email verified!</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Your email has been confirmed. You&apos;re all set.</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Your email has been confirmed. You&apos;re all set.
+              </p>
             </div>
-            <Link href={ROUTES.DASHBOARD}><Button className="w-full">Go to dashboard</Button></Link>
+            <Link href={ROUTES.DASHBOARD}>
+              <Button className="w-full">Go to dashboard</Button>
+            </Link>
           </>
         )}
         {state === 'error' && (
@@ -48,9 +52,15 @@ export default function VerifyEmailPage() {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Verification failed</h2>
-              <p className="mt-1 text-sm text-muted-foreground">This link may have expired. Please request a new one.</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                This link may have expired. Please request a new one.
+              </p>
             </div>
-            <Link href={ROUTES.LOGIN}><Button variant="outline" className="w-full">Back to sign in</Button></Link>
+            <Link href={ROUTES.LOGIN}>
+              <Button variant="outline" className="w-full">
+                Back to sign in
+              </Button>
+            </Link>
           </>
         )}
       </CardContent>

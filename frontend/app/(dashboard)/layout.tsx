@@ -13,11 +13,7 @@ export const metadata: Metadata = {
  * Provides: Sidebar + Topbar + ErrorBoundary + Mobile bottom nav.
  * The main content area grows to fill remaining space.
  */
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <div className="flex h-screen overflow-hidden bg-background">
@@ -29,10 +25,8 @@ export default function DashboardLayout({
           <Topbar />
 
           {/* Scrollable page content */}
-          <div className="flex-1 overflow-y-auto thin-scrollbar">
-            <ErrorBoundary>
-              {children}
-            </ErrorBoundary>
+          <div className="thin-scrollbar flex-1 overflow-y-auto">
+            <ErrorBoundary>{children}</ErrorBoundary>
           </div>
         </div>
       </div>

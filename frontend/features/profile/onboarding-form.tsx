@@ -5,13 +5,35 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Check, Droplet, Dumbbell, Sparkles, Target, User } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Droplet,
+  Dumbbell,
+  Sparkles,
+  Target,
+  User,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { useAuth } from '@/features/auth/context/MockAuthProvider'
-import { ROUTES, HEALTH_GOALS, ACTIVITY_LEVELS, DIETARY_PREFERENCES, ALLERGENS } from '@/lib/constants'
+import {
+  ROUTES,
+  HEALTH_GOALS,
+  ACTIVITY_LEVELS,
+  DIETARY_PREFERENCES,
+  ALLERGENS,
+} from '@/lib/constants'
 import { toast } from '@/hooks/useToast'
 import { cn } from '@/lib/utils'
 
@@ -25,16 +47,38 @@ const step1Schema = z.object({
 })
 
 const step2Schema = z.object({
-  goal: z.enum(['lose_weight', 'maintain_weight', 'gain_muscle', 'improve_fitness', 'eat_healthier']),
+  goal: z.enum([
+    'lose_weight',
+    'maintain_weight',
+    'gain_muscle',
+    'improve_fitness',
+    'eat_healthier',
+  ]),
   target_weight_kg: z.coerce.number().min(20, 'Weight must be valid').max(500).optional(),
 })
 
 const step3Schema = z.object({
-  activity_level: z.enum(['sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active']),
+  activity_level: z.enum([
+    'sedentary',
+    'lightly_active',
+    'moderately_active',
+    'very_active',
+    'extra_active',
+  ]),
 })
 
 const step4Schema = z.object({
-  dietary_preference: z.enum(['none', 'vegetarian', 'vegan', 'pescatarian', 'keto', 'paleo', 'mediterranean', 'gluten_free', 'dairy_free']),
+  dietary_preference: z.enum([
+    'none',
+    'vegetarian',
+    'vegan',
+    'pescatarian',
+    'keto',
+    'paleo',
+    'mediterranean',
+    'gluten_free',
+    'dairy_free',
+  ]),
   allergens: z.array(z.string()),
 })
 
@@ -43,7 +87,11 @@ const step5Schema = z.object({
   unit_system: z.enum(['metric', 'imperial']),
 })
 
-const onboardingSchema = step1Schema.merge(step2Schema).merge(step3Schema).merge(step4Schema).merge(step5Schema)
+const onboardingSchema = step1Schema
+  .merge(step2Schema)
+  .merge(step3Schema)
+  .merge(step4Schema)
+  .merge(step5Schema)
 type OnboardingFormValues = z.infer<typeof onboardingSchema>
 
 export function OnboardingForm() {
@@ -91,12 +139,12 @@ export function OnboardingForm() {
       step === 1
         ? ['name', 'age', 'gender', 'height_cm', 'weight_kg']
         : step === 2
-        ? ['goal', 'target_weight_kg']
-        : step === 3
-        ? ['activity_level']
-        : step === 4
-        ? ['dietary_preference', 'allergens']
-        : ['water_goal_ml', 'unit_system']
+          ? ['goal', 'target_weight_kg']
+          : step === 3
+            ? ['activity_level']
+            : step === 4
+              ? ['dietary_preference', 'allergens']
+              : ['water_goal_ml', 'unit_system']
 
     const isStepValid = await trigger(fieldsToValidate as any)
     if (isStepValid) {
@@ -126,20 +174,23 @@ export function OnboardingForm() {
   }
 
   return (
-    <Card className="w-full max-w-xl mx-auto border-border bg-card shadow-lg transition-all duration-slow">
-      <CardHeader className="space-y-1.5 pb-4 border-b border-border">
+    <Card className="mx-auto w-full max-w-xl border-border bg-card shadow-lg transition-all duration-slow">
+      <CardHeader className="space-y-1.5 border-b border-border pb-4">
         <div className="flex items-center justify-between">
           <CardDescription className="text-xs font-semibold uppercase tracking-wider text-accent">
             Step {step} of {totalSteps}
           </CardDescription>
-          <div className="flex h-1.5 w-24 overflow-hidden rounded-full bg-secondary" aria-hidden="true">
+          <div
+            className="flex h-1.5 w-24 overflow-hidden rounded-full bg-secondary"
+            aria-hidden="true"
+          >
             <div
               className="bg-accent transition-all duration-slow"
               style={{ width: `${(step / totalSteps) * 100}%` }}
             />
           </div>
         </div>
-        <CardTitle className="text-xl md:text-2xl font-bold tracking-tight">
+        <CardTitle className="text-xl font-bold tracking-tight md:text-2xl">
           {step === 1 && 'Tell us about yourself'}
           {step === 2 && 'What is your primary goal?'}
           {step === 3 && 'Choose your activity level'}
@@ -155,7 +206,7 @@ export function OnboardingForm() {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="pt-6 min-h-[300px]">
+      <CardContent className="min-h-[300px] pt-6">
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <AnimatePresence mode="wait">
             {step === 1 && (
@@ -170,24 +221,14 @@ export function OnboardingForm() {
               >
                 <div className="space-y-1.5">
                   <Label htmlFor="name">Preferred Name</Label>
-                  <Input
-                    id="name"
-                    placeholder="Alex"
-                    error={!!errors.name}
-                    {...register('name')}
-                  />
+                  <Input id="name" placeholder="Alex" error={!!errors.name} {...register('name')} />
                   {errors.name && <p className="text-xs text-danger">{errors.name.message}</p>}
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label htmlFor="age">Age</Label>
-                    <Input
-                      id="age"
-                      type="number"
-                      error={!!errors.age}
-                      {...register('age')}
-                    />
+                    <Input id="age" type="number" error={!!errors.age} {...register('age')} />
                     {errors.age && <p className="text-xs text-danger">{errors.age.message}</p>}
                   </div>
 
@@ -219,7 +260,9 @@ export function OnboardingForm() {
                       error={!!errors.height_cm}
                       {...register('height_cm')}
                     />
-                    {errors.height_cm && <p className="text-xs text-danger">{errors.height_cm.message}</p>}
+                    {errors.height_cm && (
+                      <p className="text-xs text-danger">{errors.height_cm.message}</p>
+                    )}
                   </div>
 
                   <div className="space-y-1.5">
@@ -230,7 +273,9 @@ export function OnboardingForm() {
                       error={!!errors.weight_kg}
                       {...register('weight_kg')}
                     />
-                    {errors.weight_kg && <p className="text-xs text-danger">{errors.weight_kg.message}</p>}
+                    {errors.weight_kg && (
+                      <p className="text-xs text-danger">{errors.weight_kg.message}</p>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -253,9 +298,9 @@ export function OnboardingForm() {
                       type="button"
                       onClick={() => setValue('goal', g.value as any, { shouldValidate: true })}
                       className={cn(
-                        'flex items-center gap-3 w-full text-left p-3.5 rounded-xl border transition-all text-sm',
+                        'flex w-full items-center gap-3 rounded-xl border p-3.5 text-left text-sm transition-all',
                         watchGoal === g.value
-                          ? 'border-accent bg-accent-subtle/50 text-accent font-medium'
+                          ? 'border-accent bg-accent-subtle/50 font-medium text-accent'
                           : 'border-border bg-card text-foreground hover:bg-muted'
                       )}
                     >
@@ -265,11 +310,13 @@ export function OnboardingForm() {
                           watchGoal === g.value ? 'border-accent text-accent' : 'border-border'
                         )}
                       >
-                        {watchGoal === g.value && <div className="h-2.5 w-2.5 rounded-full bg-accent" />}
+                        {watchGoal === g.value && (
+                          <div className="h-2.5 w-2.5 rounded-full bg-accent" />
+                        )}
                       </div>
                       <div>
                         <div className="font-semibold">{g.label}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">{g.description}</div>
+                        <div className="mt-0.5 text-xs text-muted-foreground">{g.description}</div>
                       </div>
                     </button>
                   ))}
@@ -288,7 +335,9 @@ export function OnboardingForm() {
                       error={!!errors.target_weight_kg}
                       {...register('target_weight_kg')}
                     />
-                    {errors.target_weight_kg && <p className="text-xs text-danger">{errors.target_weight_kg.message}</p>}
+                    {errors.target_weight_kg && (
+                      <p className="text-xs text-danger">{errors.target_weight_kg.message}</p>
+                    )}
                   </motion.div>
                 )}
               </motion.div>
@@ -308,11 +357,13 @@ export function OnboardingForm() {
                   <button
                     key={a.value}
                     type="button"
-                    onClick={() => setValue('activity_level', a.value as any, { shouldValidate: true })}
+                    onClick={() =>
+                      setValue('activity_level', a.value as any, { shouldValidate: true })
+                    }
                     className={cn(
-                      'flex items-center gap-3 w-full text-left p-3.5 rounded-xl border transition-all text-sm',
+                      'flex w-full items-center gap-3 rounded-xl border p-3.5 text-left text-sm transition-all',
                       watchActivity === a.value
-                        ? 'border-accent bg-accent-subtle/50 text-accent font-medium'
+                        ? 'border-accent bg-accent-subtle/50 font-medium text-accent'
                         : 'border-border bg-card text-foreground hover:bg-muted'
                     )}
                   >
@@ -322,11 +373,13 @@ export function OnboardingForm() {
                         watchActivity === a.value ? 'border-accent text-accent' : 'border-border'
                       )}
                     >
-                      {watchActivity === a.value && <div className="h-2.5 w-2.5 rounded-full bg-accent" />}
+                      {watchActivity === a.value && (
+                        <div className="h-2.5 w-2.5 rounded-full bg-accent" />
+                      )}
                     </div>
                     <div>
                       <div className="font-semibold">{a.label}</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">{a.description}</div>
+                      <div className="mt-0.5 text-xs text-muted-foreground">{a.description}</div>
                     </div>
                   </button>
                 ))}
@@ -345,14 +398,16 @@ export function OnboardingForm() {
               >
                 <div className="space-y-2">
                   <Label>Dietary Preference</Label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
                     {DIETARY_PREFERENCES.map((p) => (
                       <button
                         key={p.value}
                         type="button"
-                        onClick={() => setValue('dietary_preference', p.value as any, { shouldValidate: true })}
+                        onClick={() =>
+                          setValue('dietary_preference', p.value as any, { shouldValidate: true })
+                        }
                         className={cn(
-                          'p-2.5 rounded-lg border text-center transition-all text-xs font-medium truncate',
+                          'truncate rounded-lg border p-2.5 text-center text-xs font-medium transition-all',
                           watchDietary === p.value
                             ? 'border-accent bg-accent-subtle text-accent'
                             : 'border-border bg-card text-muted-foreground hover:bg-muted'
@@ -366,7 +421,7 @@ export function OnboardingForm() {
 
                 <div className="space-y-2">
                   <Label>Allergens / Avoided Ingredients</Label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
                     {ALLERGENS.map((a) => {
                       const isSelected = watchAllergens.includes(a.value)
                       return (
@@ -380,7 +435,7 @@ export function OnboardingForm() {
                             setValue('allergens', newAllergens, { shouldValidate: true })
                           }}
                           className={cn(
-                            'flex items-center justify-between p-2.5 rounded-lg border transition-all text-xs font-medium',
+                            'flex items-center justify-between rounded-lg border p-2.5 text-xs font-medium transition-all',
                             isSelected
                               ? 'border-danger bg-danger-subtle text-danger'
                               : 'border-border bg-card text-muted-foreground hover:bg-muted'
@@ -414,7 +469,9 @@ export function OnboardingForm() {
                     error={!!errors.water_goal_ml}
                     {...register('water_goal_ml')}
                   />
-                  {errors.water_goal_ml && <p className="text-xs text-danger">{errors.water_goal_ml.message}</p>}
+                  {errors.water_goal_ml && (
+                    <p className="text-xs text-danger">{errors.water_goal_ml.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -424,28 +481,32 @@ export function OnboardingForm() {
                       type="button"
                       onClick={() => setValue('unit_system', 'metric', { shouldValidate: true })}
                       className={cn(
-                        'p-4 rounded-xl border text-center transition-all text-sm font-medium',
+                        'rounded-xl border p-4 text-center text-sm font-medium transition-all',
                         watchUnit === 'metric'
                           ? 'border-accent bg-accent-subtle text-accent'
                           : 'border-border bg-card text-muted-foreground hover:bg-muted'
                       )}
                     >
                       Metric
-                      <div className="text-xs text-muted-foreground font-normal mt-1">cm / kg / ml</div>
+                      <div className="mt-1 text-xs font-normal text-muted-foreground">
+                        cm / kg / ml
+                      </div>
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setValue('unit_system', 'imperial', { shouldValidate: true })}
                       className={cn(
-                        'p-4 rounded-xl border text-center transition-all text-sm font-medium',
+                        'rounded-xl border p-4 text-center text-sm font-medium transition-all',
                         watchUnit === 'imperial'
                           ? 'border-accent bg-accent-subtle text-accent'
                           : 'border-border bg-card text-muted-foreground hover:bg-muted'
                       )}
                     >
                       Imperial
-                      <div className="text-xs text-muted-foreground font-normal mt-1">in / lbs / fl oz</div>
+                      <div className="mt-1 text-xs font-normal text-muted-foreground">
+                        in / lbs / fl oz
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -462,19 +523,19 @@ export function OnboardingForm() {
           disabled={step === 1 || isSubmitting}
           type="button"
         >
-          <ArrowLeft className="h-4 w-4 mr-2" />
+          <ArrowLeft className="mr-2 h-4 w-4" />
           Back
         </Button>
 
         {step < totalSteps ? (
           <Button onClick={nextStep} type="button">
             Next
-            <ArrowRight className="h-4 w-4 ml-2" />
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         ) : (
           <Button onClick={handleSubmit(onSubmit)} loading={isSubmitting}>
             Finish Setup
-            <Check className="h-4 w-4 ml-2" />
+            <Check className="ml-2 h-4 w-4" />
           </Button>
         )}
       </CardFooter>

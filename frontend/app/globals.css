@@ -21,100 +21,100 @@
     --radius: 0.5rem;
 
     /* ── 60% — Neutral Background */
-    --background: 210 40% 98%;        /* #F8FAFC */
-    --foreground: 222 84% 5%;         /* #0F172A */
+    --background: 210 40% 98%; /* #F8FAFC */
+    --foreground: 222 84% 5%; /* #0F172A */
 
     /* ── 30% — Surfaces / Cards / Panels */
-    --surface: 0 0% 100%;             /* #FFFFFF */
-    --surface-raised: 210 40% 96%;    /* #F1F5F9 */
-    --surface-overlay: 0 0% 100%;     /* #FFFFFF */
+    --surface: 0 0% 100%; /* #FFFFFF */
+    --surface-raised: 210 40% 96%; /* #F1F5F9 */
+    --surface-overlay: 0 0% 100%; /* #FFFFFF */
 
-    --card: 0 0% 100%;                /* #FFFFFF */
-    --card-foreground: 222 84% 5%;    /* #0F172A */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 222 84% 5%; /* #0F172A */
 
-    --popover: 0 0% 100%;             /* #FFFFFF */
+    --popover: 0 0% 100%; /* #FFFFFF */
     --popover-foreground: 222 84% 5%;
 
-    --muted: 210 40% 96%;             /* #F1F5F9 */
-    --muted-foreground: 215 16% 47%;  /* #64748B */
+    --muted: 210 40% 96%; /* #F1F5F9 */
+    --muted-foreground: 215 16% 47%; /* #64748B */
 
-    --secondary: 210 40% 96%;         /* #F1F5F9 */
+    --secondary: 210 40% 96%; /* #F1F5F9 */
     --secondary-foreground: 222 47% 11%;
 
     /* ── 10% — Accent (Blue Only) */
-    --accent: 217 91% 60%;            /* #2563EB */
-    --accent-foreground: 0 0% 100%;   /* #FFFFFF */
-    --accent-subtle: 214 100% 97%;    /* #EFF6FF */
+    --accent: 217 91% 60%; /* #2563EB */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+    --accent-subtle: 214 100% 97%; /* #EFF6FF */
 
-    --primary: 217 91% 60%;           /* #2563EB */
-    --primary-foreground: 0 0% 100%;  /* #FFFFFF */
+    --primary: 217 91% 60%; /* #2563EB */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
 
     /* ── Borders & Inputs */
-    --border: 214 32% 91%;            /* #E2E8F0 */
-    --input: 214 32% 91%;             /* #E2E8F0 */
-    --ring: 217 91% 60%;              /* #2563EB — focus ring */
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --input: 214 32% 91%; /* #E2E8F0 */
+    --ring: 217 91% 60%; /* #2563EB — focus ring */
 
     /* ── Status Colors */
-    --success: 142 71% 45%;           /* #22C55E */
+    --success: 142 71% 45%; /* #22C55E */
     --success-foreground: 0 0% 100%;
-    --success-subtle: 142 76% 96%;    /* #F0FDF4 */
+    --success-subtle: 142 76% 96%; /* #F0FDF4 */
 
-    --warning: 38 92% 50%;            /* #F59E0B */
+    --warning: 38 92% 50%; /* #F59E0B */
     --warning-foreground: 0 0% 100%;
-    --warning-subtle: 48 100% 96%;    /* #FFFBEB */
+    --warning-subtle: 48 100% 96%; /* #FFFBEB */
 
-    --danger: 0 84% 60%;              /* #EF4444 */
+    --danger: 0 84% 60%; /* #EF4444 */
     --danger-foreground: 0 0% 100%;
-    --danger-subtle: 0 86% 97%;       /* #FEF2F2 */
+    --danger-subtle: 0 86% 97%; /* #FEF2F2 */
 
     /* ── Sidebar */
-    --sidebar-background: 0 0% 100%;  /* #FFFFFF */
+    --sidebar-background: 0 0% 100%; /* #FFFFFF */
     --sidebar-foreground: 222 84% 5%; /* #0F172A */
-    --sidebar-border: 214 32% 91%;    /* #E2E8F0 */
-    --sidebar-accent: 210 40% 96%;    /* #F1F5F9 — hover state */
+    --sidebar-border: 214 32% 91%; /* #E2E8F0 */
+    --sidebar-accent: 210 40% 96%; /* #F1F5F9 — hover state */
     --sidebar-accent-foreground: 222 47% 11%;
 
     /* ── Chart Colors (fixed regardless of theme) */
-    --chart-1: 217 91% 60%;           /* blue — calories/primary */
-    --chart-2: 142 71% 45%;           /* green — protein */
-    --chart-3: 38 92% 50%;            /* amber — carbs */
-    --chart-4: 0 84% 60%;             /* red — fat */
-    --chart-5: 215 16% 47%;           /* slate — fiber/other */
+    --chart-1: 217 91% 60%; /* blue — calories/primary */
+    --chart-2: 142 71% 45%; /* green — protein */
+    --chart-3: 38 92% 50%; /* amber — carbs */
+    --chart-4: 0 84% 60%; /* red — fat */
+    --chart-5: 215 16% 47%; /* slate — fiber/other */
   }
 
   /* ── CSS Variables — Dark Theme ───────────────────────────────── */
   .dark {
     /* ── 60% — Neutral Background */
-    --background: 222 47% 8%;         /* #0D1221 — deep dark slate */
-    --foreground: 210 40% 98%;        /* #F8FAFC */
+    --background: 222 47% 8%; /* #0D1221 — deep dark slate */
+    --foreground: 210 40% 98%; /* #F8FAFC */
 
     /* ── 30% — Surfaces / Cards */
-    --surface: 222 47% 11%;           /* #111827 */
-    --surface-raised: 222 47% 14%;    /* #1E2A3D */
-    --surface-overlay: 222 47% 16%;   /* #1F2E45 */
+    --surface: 222 47% 11%; /* #111827 */
+    --surface-raised: 222 47% 14%; /* #1E2A3D */
+    --surface-overlay: 222 47% 16%; /* #1F2E45 */
 
-    --card: 222 47% 11%;              /* #111827 */
-    --card-foreground: 210 40% 98%;   /* #F8FAFC */
+    --card: 222 47% 11%; /* #111827 */
+    --card-foreground: 210 40% 98%; /* #F8FAFC */
 
     --popover: 222 47% 13%;
     --popover-foreground: 210 40% 98%;
 
-    --muted: 222 47% 16%;             /* #1E2A3D */
-    --muted-foreground: 215 20% 55%;  /* #7A8FA6 */
+    --muted: 222 47% 16%; /* #1E2A3D */
+    --muted-foreground: 215 20% 55%; /* #7A8FA6 */
 
     --secondary: 222 47% 16%;
     --secondary-foreground: 210 40% 98%;
 
     /* ── 10% — Accent (same blue, slightly brighter for dark) */
-    --accent: 217 91% 65%;            /* #3B82F6 — slightly lighter blue for dark */
+    --accent: 217 91% 65%; /* #3B82F6 — slightly lighter blue for dark */
     --accent-foreground: 0 0% 100%;
-    --accent-subtle: 217 91% 12%;     /* Dark blue tint background */
+    --accent-subtle: 217 91% 12%; /* Dark blue tint background */
 
     --primary: 217 91% 65%;
     --primary-foreground: 0 0% 100%;
 
     /* ── Borders & Inputs */
-    --border: 222 47% 20%;            /* subtle dark border */
+    --border: 222 47% 20%; /* subtle dark border */
     --input: 222 47% 18%;
     --ring: 217 91% 65%;
 
@@ -178,12 +178,24 @@
   }
 
   /* Headings */
-  h1 { @apply text-4xl font-bold tracking-tight; }
-  h2 { @apply text-3xl font-semibold tracking-tight; }
-  h3 { @apply text-2xl font-semibold; }
-  h4 { @apply text-xl font-semibold; }
-  h5 { @apply text-lg font-medium; }
-  h6 { @apply text-base font-medium; }
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+  h2 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+  h4 {
+    @apply text-xl font-semibold;
+  }
+  h5 {
+    @apply text-lg font-medium;
+  }
+  h6 {
+    @apply text-base font-medium;
+  }
 
   /* Links */
   a {

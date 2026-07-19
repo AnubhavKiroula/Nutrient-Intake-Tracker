@@ -44,9 +44,14 @@ export function MicronutrientProgress({ totals, goals, className }: Micronutrien
                 <span className="font-medium text-foreground">{micro.label}</span>
                 <div className="flex items-center gap-1.5">
                   <span className="text-muted-foreground">
-                    {formatNumber(micro.current, 1)}{micro.unit}
+                    {formatNumber(micro.current, 1)}
+                    {micro.unit}
                   </span>
-                  {isOver && <Badge variant="warning" className="text-[10px] px-1.5 py-0">Over</Badge>}
+                  {isOver && (
+                    <Badge variant="warning" className="px-1.5 py-0 text-[10px]">
+                      Over
+                    </Badge>
+                  )}
                 </div>
               </div>
               <Progress

@@ -16,10 +16,13 @@ export function DeficienciesList({ deficiencies }: DeficienciesListProps) {
     <Card className="border-border bg-card shadow-xs">
       <CardHeader className="pb-2">
         <div className="flex items-center gap-2">
-          <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+          <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Nutritional Deficiencies
           </CardTitle>
-          <Info className="h-4 w-4 text-muted-foreground shrink-0" aria-label="Details about nutritional warning calculations" />
+          <Info
+            className="h-4 w-4 shrink-0 text-muted-foreground"
+            aria-label="Details about nutritional warning calculations"
+          />
         </div>
         <CardDescription className="text-xs">
           Nutrients tracked below recommended intake
@@ -27,9 +30,9 @@ export function DeficienciesList({ deficiencies }: DeficienciesListProps) {
       </CardHeader>
       <CardContent className="space-y-4">
         {deficiencies.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-8 text-center bg-muted/20 border border-dashed border-border rounded-xl">
+          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/20 py-8 text-center">
             <span className="text-sm font-bold text-success">Excellent!</span>
-            <p className="text-xs text-muted-foreground mt-1">No nutrient deficiencies detected.</p>
+            <p className="mt-1 text-xs text-muted-foreground">No nutrient deficiencies detected.</p>
           </div>
         ) : (
           <ul className="space-y-3.5" role="list">
@@ -38,19 +41,22 @@ export function DeficienciesList({ deficiencies }: DeficienciesListProps) {
                 item.severity === 'high'
                   ? 'danger'
                   : item.severity === 'medium'
-                  ? 'warning'
-                  : 'secondary'
+                    ? 'warning'
+                    : 'secondary'
 
               return (
-                <li key={item.nutrient} className="space-y-1.5 p-2 rounded-lg transition-colors hover:bg-muted/40">
+                <li
+                  key={item.nutrient}
+                  className="space-y-1.5 rounded-lg p-2 transition-colors hover:bg-muted/40"
+                >
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2">
                       {item.severity === 'high' && (
-                        <AlertTriangle className="h-3.5 w-3.5 text-danger shrink-0 animate-pulse" />
+                        <AlertTriangle className="h-3.5 w-3.5 shrink-0 animate-pulse text-danger" />
                       )}
                       <span className="font-semibold text-foreground">{item.nutrient}</span>
                     </div>
-                    <Badge variant={severityVariant} className="text-[10px] py-0 px-1.5">
+                    <Badge variant={severityVariant} className="px-1.5 py-0 text-[10px]">
                       {item.severity} severity
                     </Badge>
                   </div>
@@ -66,10 +72,18 @@ export function DeficienciesList({ deficiencies }: DeficienciesListProps) {
 
                   <Progress
                     value={item.percentage}
-                    color={item.severity === 'high' ? 'danger' : item.severity === 'medium' ? 'warning' : 'success'}
+                    color={
+                      item.severity === 'high'
+                        ? 'danger'
+                        : item.severity === 'medium'
+                          ? 'warning'
+                          : 'success'
+                    }
                     aria-label={`${item.nutrient} compliance: ${item.percentage}%`}
                   />
-                  <p className="text-[10px] text-muted-foreground text-right">{item.percentage}% of goal reached</p>
+                  <p className="text-right text-[10px] text-muted-foreground">
+                    {item.percentage}% of goal reached
+                  </p>
                 </li>
               )
             })}

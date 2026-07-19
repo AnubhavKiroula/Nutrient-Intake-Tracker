@@ -97,9 +97,14 @@ function UserMenu() {
         >
           {initials}
         </div>
-        <span className="hidden sm:block max-w-[120px] truncate">{MOCK_USER.name.split(' ')[0]}</span>
+        <span className="hidden max-w-[120px] truncate sm:block">
+          {MOCK_USER.name.split(' ')[0]}
+        </span>
         <ChevronDown
-          className={cn('hidden h-3.5 w-3.5 text-muted-foreground transition-transform sm:block', open && 'rotate-180')}
+          className={cn(
+            'hidden h-3.5 w-3.5 text-muted-foreground transition-transform sm:block',
+            open && 'rotate-180'
+          )}
           aria-hidden="true"
         />
       </button>
@@ -116,15 +121,15 @@ function UserMenu() {
           aria-label="User menu options"
         >
           {/* User info */}
-          <div className="px-3 py-2 border-b border-border mb-1">
-            <p className="text-sm font-medium text-foreground truncate">{MOCK_USER.name}</p>
-            <p className="text-xs text-muted-foreground truncate">{MOCK_USER.email}</p>
+          <div className="mb-1 border-b border-border px-3 py-2">
+            <p className="truncate text-sm font-medium text-foreground">{MOCK_USER.name}</p>
+            <p className="truncate text-xs text-muted-foreground">{MOCK_USER.email}</p>
           </div>
 
           {/* Menu items */}
           <Link
             href={ROUTES.SETTINGS}
-            className="flex items-center gap-2.5 rounded-md px-3 py-2 text-sm text-foreground hover:bg-muted transition-colors"
+            className="flex items-center gap-2.5 rounded-md px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted"
             role="menuitem"
             onClick={() => setOpen(false)}
           >
@@ -133,7 +138,7 @@ function UserMenu() {
           </Link>
           <Link
             href={ROUTES.SETTINGS}
-            className="flex items-center gap-2.5 rounded-md px-3 py-2 text-sm text-foreground hover:bg-muted transition-colors"
+            className="flex items-center gap-2.5 rounded-md px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted"
             role="menuitem"
             onClick={() => setOpen(false)}
           >
@@ -145,7 +150,7 @@ function UserMenu() {
 
           {/* Sign out — mock, no real auth logic */}
           <button
-            className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-danger hover:bg-danger-subtle transition-colors"
+            className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-danger transition-colors hover:bg-danger-subtle"
             role="menuitem"
             onClick={() => {
               setOpen(false)
@@ -191,20 +196,13 @@ export function Topbar({ title }: TopbarProps) {
         )}
 
         {/* Page title */}
-        {title && (
-          <h1 className="text-lg font-semibold text-foreground">{title}</h1>
-        )}
+        {title && <h1 className="text-lg font-semibold text-foreground">{title}</h1>}
       </div>
 
       {/* Right side controls */}
       <div className="flex items-center gap-1.5">
         {/* Notifications — UI shell only */}
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label="Notifications"
-          className="relative"
-        >
+        <Button variant="ghost" size="icon" aria-label="Notifications" className="relative">
           <Bell className="h-4 w-4" aria-hidden="true" />
           {/* Unread dot */}
           <span

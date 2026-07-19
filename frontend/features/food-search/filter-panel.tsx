@@ -74,10 +74,10 @@ export function FilterPanel({
       </div>
 
       {open && (
-        <div className="rounded-xl border border-border bg-card p-4 space-y-4 animate-fade-in shadow-sm">
+        <div className="animate-fade-in space-y-4 rounded-xl border border-border bg-card p-4 shadow-sm">
           {/* Dietary Prefs */}
           <div className="space-y-2">
-            <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Dietary Preference (All of these)
             </Label>
             <div className="flex flex-wrap gap-1.5">
@@ -89,7 +89,7 @@ export function FilterPanel({
                     type="button"
                     onClick={() => toggleDietary(p.value)}
                     className={cn(
-                      'px-3 py-1.5 rounded-lg border text-xs font-medium transition-all duration-fast',
+                      'rounded-lg border px-3 py-1.5 text-xs font-medium transition-all duration-fast',
                       isSelected
                         ? 'border-accent bg-accent-subtle text-accent'
                         : 'border-border bg-card text-muted-foreground hover:bg-muted'
@@ -104,7 +104,7 @@ export function FilterPanel({
 
           {/* Excluded Allergens */}
           <div className="space-y-2">
-            <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Exclude Allergens / Ingredients (None of these)
             </Label>
             <div className="flex flex-wrap gap-1.5">
@@ -116,7 +116,7 @@ export function FilterPanel({
                     type="button"
                     onClick={() => toggleAllergen(a.value)}
                     className={cn(
-                      'flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all duration-fast',
+                      'flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all duration-fast',
                       isSelected
                         ? 'border-danger bg-danger-subtle text-danger'
                         : 'border-border bg-card text-muted-foreground hover:bg-muted'

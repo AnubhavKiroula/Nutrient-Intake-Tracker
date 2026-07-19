@@ -7,10 +7,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import { Download, FileSpreadsheet, FileText, Loader2, Sparkles, TrendingUp } from 'lucide-react'
+import { FileSpreadsheet, FileText, Loader2 } from 'lucide-react'
 import { mockGetReport, mockExportReport } from '@/lib/mock-api/analytics'
 import { ErrorState } from '@/components/ui/error-state'
-import { SkeletonCard, SkeletonRow } from '@/components/ui/skeleton'
+import { SkeletonCard } from '@/components/ui/skeleton'
 import { formatCalories, formatGrams, formatNumber } from '@/lib/utils'
 import { toast } from '@/hooks/useToast'
 
@@ -44,8 +44,8 @@ export default function ReportsPage() {
       } else {
         toast.error('Export failed', res.error?.message || 'Please retry.')
       }
-    } catch (e: any) {
-      toast.error('Export error', e.message)
+    } catch (e) {
+      toast.error('Export error', e instanceof Error ? e.message : 'Unknown error')
     } finally {
       setExporting(null)
     }
@@ -65,9 +65,9 @@ export default function ReportsPage() {
               disabled={exporting !== null || isLoading}
             >
               {exporting === 'csv' ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin mr-1.5" />
+                <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" />
               ) : (
-                <FileSpreadsheet className="h-3.5 w-3.5 mr-1.5" />
+                <FileSpreadsheet className="mr-1.5 h-3.5 w-3.5" />
               )}
               Export CSV
             </Button>
@@ -77,9 +77,9 @@ export default function ReportsPage() {
               disabled={exporting !== null || isLoading}
             >
               {exporting === 'pdf' ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin mr-1.5" />
+                <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" />
               ) : (
-                <FileText className="h-3.5 w-3.5 mr-1.5" />
+                <FileText className="mr-1.5 h-3.5 w-3.5" />
               )}
               Export PDF
             </Button>
@@ -98,7 +98,7 @@ export default function ReportsPage() {
           {isLoading ? (
             <div className="space-y-6" aria-busy="true">
               <SkeletonCard />
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4 md:grid-cols-2">
                 <SkeletonCard />
                 <SkeletonCard />
               </div>
@@ -115,36 +115,51 @@ export default function ReportsPage() {
               {/* Report Header Card */}
               <Card className="border-border bg-card shadow-xs">
                 <CardHeader className="pb-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <Badge variant="accent" className="font-semibold uppercase text-[10px]">
+                      <Badge variant="accent" className="text-[10px] font-semibold uppercase">
                         {report.period} Report
                       </Badge>
-                      <CardTitle className="text-lg font-bold text-foreground mt-1">
+                      <CardTitle className="mt-1 text-lg font-bold text-foreground">
                         Report generated on {new Date(report.generated_at).toLocaleDateString()}
                       </CardTitle>
                     </div>
-                    <CardDescription className="text-xs">
-                      Reference: #{report.id}
-                    </CardDescription>
+                    <CardDescription className="text-xs">Reference: #{report.id}</CardDescription>
                   </div>
                 </CardHeader>
-                <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center border-t border-border pt-4">
+                <CardContent className="grid grid-cols-2 gap-4 border-t border-border pt-4 text-center md:grid-cols-4">
                   <div>
-                    <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Avg Calories</p>
-                    <p className="text-lg font-bold text-foreground mt-0.5">{formatCalories(report.summary.average_calories)}</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Avg Calories
+                    </p>
+                    <p className="mt-0.5 text-lg font-bold text-foreground">
+                      {formatCalories(report.summary.average_calories)}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Meals Tracked</p>
-                    <p className="text-lg font-bold text-foreground mt-0.5">{report.summary.total_meals_logged}</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Meals Tracked
+                    </p>
+                    <p className="mt-0.5 text-lg font-bold text-foreground">
+                      {report.summary.total_meals_logged}
+                    </p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Goal Completion</p>
-                    <p className="text-lg font-bold text-foreground mt-0.5">{report.summary.goal_completion_rate}%</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Goal Completion
+                    </p>
+                    <p className="mt-0.5 text-lg font-bold text-foreground">
+                      {report.summary.goal_completion_rate}%
+                    </p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Top Food Item</p>
-                    <p className="text-sm font-bold text-foreground mt-1 truncate" title={report.summary.most_logged_food}>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Top Food Item
+                    </p>
+                    <p
+                      className="mt-1 truncate text-sm font-bold text-foreground"
+                      title={report.summary.most_logged_food}
+                    >
                       {report.summary.most_logged_food.split(' ')[0]}
                     </p>
                   </div>
@@ -155,7 +170,7 @@ export default function ReportsPage() {
               <div className="grid gap-6 md:grid-cols-2">
                 <Card className="border-border bg-card shadow-xs">
                   <CardHeader>
-                    <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                       Macro Totals
                     </CardTitle>
                     <CardDescription className="text-xs">
@@ -163,19 +178,19 @@ export default function ReportsPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="flex justify-between items-center text-sm border-b border-border pb-2">
+                    <div className="flex items-center justify-between border-b border-border pb-2 text-sm">
                       <span className="font-semibold text-macro-protein">Protein</span>
                       <span className="font-bold text-foreground">
                         {formatGrams(report.nutrition_totals.protein_g)}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm border-b border-border pb-2">
+                    <div className="flex items-center justify-between border-b border-border pb-2 text-sm">
                       <span className="font-semibold text-macro-carbs">Carbohydrates</span>
                       <span className="font-bold text-foreground">
                         {formatGrams(report.nutrition_totals.carbs_g)}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm border-b border-border pb-2">
+                    <div className="flex items-center justify-between border-b border-border pb-2 text-sm">
                       <span className="font-semibold text-macro-fat">Fat</span>
                       <span className="font-bold text-foreground">
                         {formatGrams(report.nutrition_totals.fat_g)}
@@ -186,7 +201,7 @@ export default function ReportsPage() {
 
                 <Card className="border-border bg-card shadow-xs">
                   <CardHeader>
-                    <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                       Micro Totals & Others
                     </CardTitle>
                     <CardDescription className="text-xs">
@@ -194,19 +209,19 @@ export default function ReportsPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="flex justify-between items-center text-sm border-b border-border pb-2">
+                    <div className="flex items-center justify-between border-b border-border pb-2 text-sm">
                       <span className="font-semibold text-foreground">Fiber</span>
                       <span className="font-bold text-foreground">
                         {formatGrams(report.nutrition_totals.fiber_g)}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm border-b border-border pb-2">
+                    <div className="flex items-center justify-between border-b border-border pb-2 text-sm">
                       <span className="font-semibold text-foreground">Sugars</span>
                       <span className="font-bold text-foreground">
                         {formatGrams(report.nutrition_totals.sugar_g)}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-sm border-b border-border pb-2">
+                    <div className="flex items-center justify-between border-b border-border pb-2 text-sm">
                       <span className="font-semibold text-foreground">Sodium</span>
                       <span className="font-bold text-foreground">
                         {formatNumber(report.nutrition_totals.sodium_mg)} mg
