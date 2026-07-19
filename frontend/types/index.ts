@@ -5,6 +5,7 @@
 // ============================================================
 
 import type { ActivityLevel, Allergen, DietaryPreference, FoodCategory, HealthGoal, MealType, ReportPeriod, ServingUnit, UnitSystem } from '@/lib/constants'
+export type { ActivityLevel, Allergen, DietaryPreference, FoodCategory, HealthGoal, MealType, ReportPeriod, ServingUnit, UnitSystem }
 
 // ── API Response Envelope ────────────────────────────────────
 // All API responses (real and mock) use this shape
