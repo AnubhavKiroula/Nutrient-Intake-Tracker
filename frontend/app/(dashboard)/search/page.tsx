@@ -86,7 +86,7 @@ export default function FoodSearchPage() {
         </div>
 
         {/* Category horizontal scrolling chips */}
-        <CategoryChips selectedCategory={category} onSelectCategory={setCategory} />
+        <CategoryChips selectedCategory={category} onSelectCategory={(cat) => setCategory(cat as FoodCategory)} />
 
         {/* Filter Panel */}
         <FilterPanel
