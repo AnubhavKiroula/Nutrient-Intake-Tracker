@@ -52,7 +52,7 @@ export function OnboardingForm() {
   const totalSteps = 5
 
   const form = useForm<OnboardingFormValues>({
-    resolver: zodResolver(onboardingSchema),
+    resolver: zodResolver(onboardingSchema) as any,
     defaultValues: {
       name: '',
       age: 25,

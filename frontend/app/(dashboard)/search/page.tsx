@@ -14,12 +14,12 @@ import { ErrorState } from '@/components/ui/error-state'
 import { SkeletonRow } from '@/components/ui/skeleton'
 import { mockSearchFoods } from '@/lib/mock-api'
 import { useDebounce } from '@/hooks/useDebounce'
-import type { Food, MealType } from '@/types'
+import type { Food, MealType, FoodCategory } from '@/types'
 
 export default function FoodSearchPage() {
   const [query, setQuery] = React.useState('')
   const debouncedQuery = useDebounce(query, 300)
-  const [category, setCategory] = React.useState('all')
+  const [category, setCategory] = React.useState<FoodCategory>('all')
   const [dietary, setDietary] = React.useState<string[]>([])
   const [allergens, setAllergens] = React.useState<string[]>([])
 
